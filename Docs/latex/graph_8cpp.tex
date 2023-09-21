@@ -1,0 +1,195 @@
+\hypertarget{graph_8cpp}{}\doxysection{graph.\+cpp File Reference}
+\label{graph_8cpp}\index{graph.cpp@{graph.cpp}}
+
+
+Generates movement maps for each individuals and also for all of them combines together on a single map.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$gd.\+h$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include \char`\"{}my\+Functions.\+h\char`\"{}}\newline
+Include dependency graph for graph.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graph_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{graph_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em This main function generate movement maps of the individual present in the study. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates movement maps for each individuals and also for all of them combines together on a single map. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{graph_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{graph_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{graph.cpp@{graph.cpp}!main@{main}}
+\index{main@{main}!graph.cpp@{graph.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This main function generate movement maps of the individual present in the study. 
+
+It generates individual movement maps for each GPS tracked individual and in the same time combines them into a single map. It uses the GD library 
+
+Definition at line 33 of file graph.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33            \{}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* homeDir = getenv(\textcolor{stringliteral}{"{}HOME"{}});}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{// Generate map of all individual together}}
+\DoxyCodeLine{38     FILE *map = fopen(\textcolor{stringliteral}{"{}./map.png"{}}, \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{39     gdImagePtr background = gdImageCreateFromPng(map);}
+\DoxyCodeLine{40     \textcolor{keywordtype}{int} width = gdImageSX(background);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{int} height = gdImageSY(background);}
+\DoxyCodeLine{42     gdImagePtr newImage = gdImageCreateTrueColor(width, height);}
+\DoxyCodeLine{43     gdImageCopy(newImage, background, 0, 0, 0, 0, width, height);}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} black = gdImageColorAllocate(newImage, 0, 0, 0);}
+\DoxyCodeLine{45     \textcolor{keywordtype}{int} blue = gdImageColorAllocate(newImage, 0, 0, 255);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{comment}{// Initialization}}
+\DoxyCodeLine{48     \textcolor{keywordtype}{string} folderPath = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indFiles/"{}};}
+\DoxyCodeLine{49     \textcolor{keywordtype}{double} latitude, longitude, lastLatitude, lastLongitude, latitudeGD, longitudeGD, x, y, lastX, lastY;}
+\DoxyCodeLine{50     \textcolor{keywordtype}{string} daySubstr;}
+\DoxyCodeLine{51     \textcolor{keywordtype}{int} couleur, couleurInd;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     time\_t t = time(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{55     tm* currentTime = std::localtime(\&t);}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} currentDay = currentTime-\/>tm\_mday;}
+\DoxyCodeLine{57     \textcolor{keyword}{auto} tm = *localtime(\&t);}
+\DoxyCodeLine{58     ostringstream oss;}
+\DoxyCodeLine{59     oss << put\_time(\&tm, \textcolor{stringliteral}{"{}\%Y\%m\%d\%H\%M"{}});}
+\DoxyCodeLine{60     \textcolor{keyword}{auto} currentDate = oss.str();}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{string} newFolder = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indGraph-\/"{}}+currentDate+\textcolor{stringliteral}{"{}/"{}};}
+\DoxyCodeLine{64     filesystem::create\_directory(newFolder.c\_str());   }
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{comment}{// For each file in individual folder (indFile)}}
+\DoxyCodeLine{67     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&entry : filesystem::directory\_iterator(folderPath))\{}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69         \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{70         ifstream fileOutput(entry.path().string());}
+\DoxyCodeLine{71         \textcolor{keywordtype}{string} fileName = entry.path().filename().string();}
+\DoxyCodeLine{72         \textcolor{keywordtype}{string} mapName = fileName.substr(0, fileName.find\_last\_of(\textcolor{charliteral}{'.'}));}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74         \textcolor{comment}{// Check if file not empty}}
+\DoxyCodeLine{75         fileOutput.seekg(0,ios::end);}
+\DoxyCodeLine{76         \textcolor{keywordflow}{if} (!fileOutput.tellg() == 0)\{}
+\DoxyCodeLine{77             fileOutput.seekg(0, std::ios::beg);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79             \textcolor{comment}{// Check if file start with a number}}
+\DoxyCodeLine{80             \textcolor{keywordflow}{if} (isdigit(fileName[0]))\{}
+\DoxyCodeLine{81                 FILE *mapBG = fopen(\textcolor{stringliteral}{"{}./map.png"{}}, \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83                 \textcolor{comment}{// Each individual get an associated movement map}}
+\DoxyCodeLine{84                 gdImagePtr backgroundInd = gdImageCreateFromPng(mapBG);}
+\DoxyCodeLine{85                 gdImagePtr newImageInd = gdImageCreateTrueColor(1722, 738);}
+\DoxyCodeLine{86                 gdImageCopy(newImageInd, backgroundInd, 0, 0, 0, 0, 1722, 738);}
+\DoxyCodeLine{87                 \textcolor{keywordtype}{int} black = gdImageColorAllocate(backgroundInd, 0, 0, 0);}
+\DoxyCodeLine{88                 \textcolor{keywordtype}{int} blue = gdImageColorAllocate(backgroundInd, 0, 0, 255);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90                 \textcolor{keywordtype}{int} cptFirst = 0;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92                 \textcolor{keywordflow}{while} (getline(fileOutput, line)) \{}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94                     stringstream ss1(line);}
+\DoxyCodeLine{95                     \textcolor{keywordtype}{int} cpt1 = 0;}
+\DoxyCodeLine{96                     \textcolor{keywordtype}{string} substr1;}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98                     \textcolor{comment}{// Current latitude and longitude}}
+\DoxyCodeLine{99                     \textcolor{keywordflow}{while} (ss1.good()) \{}
+\DoxyCodeLine{100                         getline(ss1, substr1, \textcolor{charliteral}{','});}
+\DoxyCodeLine{101                         \textcolor{keywordflow}{if} (cpt1 == 0)\{}
+\DoxyCodeLine{102                             daySubstr = substr1.substr(8, 2);}
+\DoxyCodeLine{103                             \textcolor{keywordtype}{int} daySub = stod(daySubstr);}
+\DoxyCodeLine{104                             couleur = \mbox{\hyperlink{myFunctions_8h_a105343ddc2adb79032589650db2c4949}{whichColor}}(currentDay, daySub, newImage);}
+\DoxyCodeLine{105                             couleurInd = \mbox{\hyperlink{myFunctions_8h_a105343ddc2adb79032589650db2c4949}{whichColor}}(currentDay, daySub, backgroundInd);}
+\DoxyCodeLine{106                         \}}
+\DoxyCodeLine{107                         \textcolor{keywordflow}{if} (cpt1 == 1)\{}
+\DoxyCodeLine{108                             latitude = stod(substr1);\}}
+\DoxyCodeLine{109                         \textcolor{keywordflow}{if} (cpt1 == 2)\{}
+\DoxyCodeLine{110                             longitude = stod(substr1);\}}
+\DoxyCodeLine{111                         cpt1++;}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113                     \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115                     \textcolor{comment}{// Convertion from google map to libGD output}}
+\DoxyCodeLine{116                     x = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((longitude -\/ 2.036005930852261) * (width / (2.6273598267740628 -\/ 2.036005930852261)));}
+\DoxyCodeLine{117                     y = height -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((latitude -\/ 48.77337476303239) * (height / (48.94012387335636 -\/ 48.77337476303239))); \textcolor{comment}{// pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche}}
+\DoxyCodeLine{118                     }
+\DoxyCodeLine{119                     \textcolor{comment}{// set lines and points}}
+\DoxyCodeLine{120                     gdImageSetPixel(newImage, x, y, black);}
+\DoxyCodeLine{121                     gdImageSetPixel(backgroundInd, x, y, black);}
+\DoxyCodeLine{122                     \textcolor{keywordflow}{if} (cptFirst > 0 )\{}
+\DoxyCodeLine{123                         gdImageLine(newImage, x, y, lastX, lastY, couleur);}
+\DoxyCodeLine{124                         gdImageLine(backgroundInd, x, y, lastX, lastY, couleur);}
+\DoxyCodeLine{125                     \}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127                     \textcolor{comment}{// Previous latitude and longitude}}
+\DoxyCodeLine{128                     stringstream ss2(line);}
+\DoxyCodeLine{129                     \textcolor{keywordtype}{int} cpt2 = 0;}
+\DoxyCodeLine{130                     \textcolor{keywordtype}{string} substr2;}
+\DoxyCodeLine{131                     \textcolor{keywordflow}{while} (ss2.good()) \{}
+\DoxyCodeLine{132                         getline(ss2, substr2, \textcolor{charliteral}{','});}
+\DoxyCodeLine{133                         \textcolor{keywordflow}{if} (cpt2 == 1)\{}
+\DoxyCodeLine{134                             lastLatitude = stod(substr2);\}}
+\DoxyCodeLine{135                         \textcolor{keywordflow}{if} (cpt2 == 2)\{}
+\DoxyCodeLine{136                             lastLongitude = stod(substr2);\}}
+\DoxyCodeLine{137                         cpt2++;}
+\DoxyCodeLine{138                     \}}
+\DoxyCodeLine{139                     }
+\DoxyCodeLine{140                     \textcolor{comment}{// Convertion from google map to libGD}}
+\DoxyCodeLine{141                     lastX = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((lastLongitude -\/ 2.036005930852261) * (width / (2.6273598267740628 -\/ 2.036005930852261)));}
+\DoxyCodeLine{142                     lastY = height -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((lastLatitude -\/ 48.77337476303239) * (height / (48.94012387335636 -\/ 48.77337476303239))); \textcolor{comment}{// pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche}}
+\DoxyCodeLine{143                     cptFirst++;}
+\DoxyCodeLine{144                 \}}
+\DoxyCodeLine{145                 }
+\DoxyCodeLine{146                 \textcolor{comment}{//Create a map for each individual}}
+\DoxyCodeLine{147                 \textcolor{comment}{// avoid bird from other location than France (Sicilia and Israel)}}
+\DoxyCodeLine{148                 \textcolor{keywordflow}{if} (48 < latitude \&\& latitude < 49 \&\& 2 < longitude \&\& longitude < 3) \{}
+\DoxyCodeLine{149                     \textcolor{keywordtype}{string} fileIndPath = newFolder+mapName+\textcolor{stringliteral}{"{}.png"{}};}
+\DoxyCodeLine{150                     cout << fileIndPath << endl;}
+\DoxyCodeLine{151                     FILE *mapInd = fopen(fileIndPath.c\_str(), \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{152                     gdImagePng(backgroundInd, mapInd);  }
+\DoxyCodeLine{153                     fclose(mapInd);\}}
+\DoxyCodeLine{154                 fclose(mapBG);}
+\DoxyCodeLine{155                 gdImageDestroy(backgroundInd);}
+\DoxyCodeLine{156                 gdImageDestroy(newImageInd);}
+\DoxyCodeLine{157                 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159             \}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161         \}}
+\DoxyCodeLine{162         fileOutput.close();}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \}}
+\DoxyCodeLine{165     FILE *outputFile = fopen((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/mapAll.png"{}}).c\_str(), \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{166     gdImagePng(newImage, outputFile);}
+\DoxyCodeLine{167     fclose(outputFile);}
+\DoxyCodeLine{168     gdImageDestroy(background);}
+\DoxyCodeLine{169     gdImageDestroy(newImage);}
+\DoxyCodeLine{170     cout << \textcolor{stringliteral}{"{}Done."{}} << endl;}
+\DoxyCodeLine{171     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{172 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,152 @@
+\hypertarget{classmoveBankAuth}{}\doxysection{move\+Bank\+Auth Class Reference}
+\label{classmoveBankAuth}\index{moveBankAuth@{moveBankAuth}}
+
+
+This class is used to authentificate to the move\+Bank database.  
+
+
+
+
+{\ttfamily \#include $<$authentification.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoveBankAuth_aed11f77749667280c1ac79dcfbee1f4f}{move\+Bank\+Auth}} (const string \&home\+Dir, const string \&adresse)
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classmoveBankAuth}{move\+Bank\+Auth}}. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classmoveBankAuth_a86c494bd9bd48c749b88a2ac72583d64}{calculate\+MD5}} (string \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Calculating the md5 using the license\+\_\+terms.\+txt file. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classmoveBankAuth_a2eb10b181a7e162ad31daa2dd734de5e}{get\+MD5}} ()
+\begin{DoxyCompactList}\small\item\em Get the md5 key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is used to authentificate to the move\+Bank database. 
+
+This class is used to create an anthentification between move\+Bank.\+org and your move\+Bank identifier (here my are used by default) so that you can retrieve the data. You could need to change it to your identifier. Just create an account on move\+Bank and change it here. (id and password) Methods are used to create the certificate, the md5 encoded bound and store these data. This constructor use curl library to communicate with move\+Bank database
+
+This class is used to create an anthentification between move\+Bank.\+org and your move\+Bank identifier (here my are used by default) so that you can retrieve the data. You could need to change it to your identifier. Just create an account on move\+Bank and change it here. (id and password) Methods are used to create the certificate, the md5 hash and store these data. 
+
+Definition at line 28 of file authentification.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmoveBankAuth_aed11f77749667280c1ac79dcfbee1f4f}\label{classmoveBankAuth_aed11f77749667280c1ac79dcfbee1f4f}} 
+\index{moveBankAuth@{moveBankAuth}!moveBankAuth@{moveBankAuth}}
+\index{moveBankAuth@{moveBankAuth}!moveBankAuth@{moveBankAuth}}
+\doxysubsubsection{\texorpdfstring{moveBankAuth()}{moveBankAuth()}}
+{\footnotesize\ttfamily move\+Bank\+Auth\+::move\+Bank\+Auth (\begin{DoxyParamCaption}\item[{const string \&}]{home\+Dir,  }\item[{const string \&}]{adresse }\end{DoxyParamCaption})}
+
+
+
+Constructor for \mbox{\hyperlink{classmoveBankAuth}{move\+Bank\+Auth}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adresse} & This is the https move\+Bank study adress with which the certificate is made. Each study need a specific certificate \\
+\hline
+{\em output\+File\+Path} & This is the path to where the data from the request are stored \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 17 of file authentification.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17                                                                      \{}
+\DoxyCodeLine{18     curl = curl\_easy\_init();}
+\DoxyCodeLine{19     \textcolor{keywordtype}{string} filename = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/license\_terms.txt"{}};}
+\DoxyCodeLine{20     \textcolor{keywordflow}{if} (!filesystem::exists(filename))\{}
+\DoxyCodeLine{21         curl\_easy\_setopt(curl, CURLOPT\_URL, adresse.c\_str());}
+\DoxyCodeLine{22         curl\_easy\_setopt(curl, CURLOPT\_VERBOSE, 1L);}
+\DoxyCodeLine{23         curl\_easy\_setopt(curl, CURLOPT\_USERPWD, \textcolor{stringliteral}{"{}valpaz:valpaz21"{}});}
+\DoxyCodeLine{24         curl\_easy\_setopt(curl, CURLOPT\_WRITEDATA, fopen((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/license\_terms.txt"{}}).c\_str(), \textcolor{stringliteral}{"{}wb"{}}));}
+\DoxyCodeLine{25         CURLcode resInit = curl\_easy\_perform(curl);}
+\DoxyCodeLine{26         \textcolor{keywordflow}{if} (resInit != CURLE\_OK) \{}
+\DoxyCodeLine{27             cerr << \textcolor{stringliteral}{"{}Request error :"{}} << curl\_easy\_strerror(resInit) << endl;}
+\DoxyCodeLine{28         \}\textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{29             cout << \textcolor{stringliteral}{"{}Successful request : authentification files set up "{}} << endl;}
+\DoxyCodeLine{30             md5 = \mbox{\hyperlink{classmoveBankAuth_a86c494bd9bd48c749b88a2ac72583d64}{calculateMD5}}(filename);}
+\DoxyCodeLine{31         \}}
+\DoxyCodeLine{32     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{33         md5 = \mbox{\hyperlink{classmoveBankAuth_a86c494bd9bd48c749b88a2ac72583d64}{calculateMD5}}(filename);}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35     curl\_easy\_cleanup(curl);}
+\DoxyCodeLine{36 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmoveBankAuth_a86c494bd9bd48c749b88a2ac72583d64}\label{classmoveBankAuth_a86c494bd9bd48c749b88a2ac72583d64}} 
+\index{moveBankAuth@{moveBankAuth}!calculateMD5@{calculateMD5}}
+\index{calculateMD5@{calculateMD5}!moveBankAuth@{moveBankAuth}}
+\doxysubsubsection{\texorpdfstring{calculateMD5()}{calculateMD5()}}
+{\footnotesize\ttfamily string move\+Bank\+Auth\+::calculate\+MD5 (\begin{DoxyParamCaption}\item[{string \&}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Calculating the md5 using the license\+\_\+terms.\+txt file. 
+
+Constructor for \mbox{\hyperlink{classmoveBankRequests}{move\+Bank\+Requests}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The path to the license\+\_\+terms.\+txt file\\
+\hline
+\end{DoxyParams}
+This method takes a file as input, calculates its MD5 hash and returns the result as a hexadecimal string
+
+
+\begin{DoxyParams}{Parameters}
+{\em adresse} & This is the https adress to where the request is made \\
+\hline
+{\em output\+File\+Path} & This is the path to where the data from the request are stored \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file authentification.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46                                                  \{}
+\DoxyCodeLine{47     CryptoPP::Weak::MD5 md5;}
+\DoxyCodeLine{48     \textcolor{keywordtype}{string} result;}
+\DoxyCodeLine{49     ifstream file(fileName);}
+\DoxyCodeLine{50     CryptoPP::FileSource(file, \textcolor{keyword}{true}, \textcolor{keyword}{new} CryptoPP::HashFilter(md5, \textcolor{keyword}{new} CryptoPP::StringSink(result)));}
+\DoxyCodeLine{51     \textcolor{keywordtype}{string} md5Hex;}
+\DoxyCodeLine{52     CryptoPP::StringSource(result, \textcolor{keyword}{true}, \textcolor{keyword}{new} CryptoPP::HexEncoder(\textcolor{keyword}{new} CryptoPP::StringSink(md5Hex), \textcolor{keyword}{false}));}
+\DoxyCodeLine{53     \textcolor{keywordflow}{return} md5Hex;}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classmoveBankAuth_a2eb10b181a7e162ad31daa2dd734de5e}\label{classmoveBankAuth_a2eb10b181a7e162ad31daa2dd734de5e}} 
+\index{moveBankAuth@{moveBankAuth}!getMD5@{getMD5}}
+\index{getMD5@{getMD5}!moveBankAuth@{moveBankAuth}}
+\doxysubsubsection{\texorpdfstring{getMD5()}{getMD5()}}
+{\footnotesize\ttfamily string move\+Bank\+Auth\+::get\+MD5 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the md5 key. 
+
+Return the md5 generated hash 
+
+Definition at line 62 of file authentification.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62                             \{}
+\DoxyCodeLine{63     \textcolor{keywordflow}{return} md5;}
+\DoxyCodeLine{64 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{authentification_8h}{authentification.\+h}}\item 
+\mbox{\hyperlink{authentification_8cpp}{authentification.\+cpp}}\end{DoxyCompactItemize}

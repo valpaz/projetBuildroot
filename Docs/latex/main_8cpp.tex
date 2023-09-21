@@ -1,0 +1,123 @@
+\hypertarget{main_8cpp}{}\doxysection{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.cpp@{main.cpp}}
+
+
+This is the main program for retrieving move\+Bank data and processing them.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include \char`\"{}authentification.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}my\+Functions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}request.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em The main function of the lancheur part of this program (meant to be used on a embedded machine with cron). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the main program for retrieving move\+Bank data and processing them. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The main function of the lancheur part of this program (meant to be used on a embedded machine with cron). 
+
+This main function retrieve and process Move\+Bank data. It performs the following tasks\+:
+\begin{DoxyItemize}
+\item Creates necessary program folders
+\item Authenticates with the Move\+Bank service
+\item Retrieves individual data and stores it in files
+\item Retrieves and processes event data
+\item Updates MD5 value and last update date 
+\end{DoxyItemize}
+
+Definition at line 33 of file main.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33            \{}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{comment}{// program folder creation}}
+\DoxyCodeLine{36     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* homeDir = getenv(\textcolor{stringliteral}{"{}HOME"{}});}
+\DoxyCodeLine{37     \textcolor{keywordtype}{string} Path = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/"{}};}
+\DoxyCodeLine{38     \textcolor{keywordtype}{string} indPath = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indFiles/"{}};}
+\DoxyCodeLine{39     \textcolor{keywordtype}{string} dataPath = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/"{}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{comment}{// check of folders exist}}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} (!std::filesystem::exists(Path)) \{}
+\DoxyCodeLine{43         filesystem::create\_directory(Path);}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordflow}{if} (!std::filesystem::exists(indPath)) \{}
+\DoxyCodeLine{47         filesystem::create\_directory(indPath);}
+\DoxyCodeLine{48     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{49         \textcolor{comment}{// Clear folder}}
+\DoxyCodeLine{50         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& entry : filesystem::directory\_iterator(indPath)) \{}
+\DoxyCodeLine{51             filesystem::remove\_all(entry.path());\}           }
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53     \textcolor{keywordflow}{if} (!std::filesystem::exists(dataPath)) \{}
+\DoxyCodeLine{54         filesystem::create\_directory(dataPath);}
+\DoxyCodeLine{55     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{56         \textcolor{comment}{// Clear folder}}
+\DoxyCodeLine{57         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& entry : filesystem::directory\_iterator(dataPath)) \{}
+\DoxyCodeLine{58             filesystem::remove\_all(entry.path());\}           }
+\DoxyCodeLine{59     \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{comment}{// Initialize authentication}}
+\DoxyCodeLine{62     \textcolor{keywordtype}{string} studyName = \textcolor{stringliteral}{"{}1266784970"{}};}
+\DoxyCodeLine{63     \textcolor{keywordtype}{string} studyUrlAuthentification = (\textcolor{stringliteral}{"{}https://www.movebank.org/movebank/service/direct-\/read?entity\_type=event\&study\_id="{}}+studyName);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \mbox{\hyperlink{classmoveBankAuth}{moveBankAuth}} newAuthentification(homeDir,studyUrlAuthentification);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{comment}{// Retrieve individual data and store it in a file}}
+\DoxyCodeLine{68     \textcolor{keywordtype}{string} md5Value = newAuthentification.getMD5();}
+\DoxyCodeLine{69     \textcolor{keywordtype}{string} individualUrl = \textcolor{stringliteral}{"{}https://www.movebank.org/movebank/service/direct-\/read?entity\_type=tag\&study\_id="{}}+studyName+\textcolor{stringliteral}{"{}\&license-\/md5="{}}+md5Value;}
+\DoxyCodeLine{70     \textcolor{keywordtype}{string} individualFilePath = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/outputInd.txt"{}};}
+\DoxyCodeLine{71     \mbox{\hyperlink{classmoveBankRequests}{moveBankRequests}} newRequestId(individualUrl,individualFilePath);}
+\DoxyCodeLine{72     newRequestId.idParsing(homeDir,individualFilePath);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \textcolor{comment}{// Store MD5 hash}}
+\DoxyCodeLine{75     ofstream fileMd5(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/md5Value.txt"{}});}
+\DoxyCodeLine{76     fileMd5 << md5Value << endl;}
+\DoxyCodeLine{77     fileMd5.close();    }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{comment}{// Get current date}}
+\DoxyCodeLine{80     \textcolor{keywordtype}{string} currentDate = \mbox{\hyperlink{myFunctions_8h_ac919c3950b37172c5ef02a12d27254b4}{currentDateTime}}();}
+\DoxyCodeLine{81     ofstream fileDate(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/lastDateUpdate.txt"{}});}
+\DoxyCodeLine{82     fileDate << currentDate+\textcolor{stringliteral}{"{}000"{}} << endl;}
+\DoxyCodeLine{83     fileDate.close();}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{comment}{// Retrieve and process event data}}
+\DoxyCodeLine{87     \textcolor{keywordtype}{string} past7Date = \mbox{\hyperlink{myFunctions_8h_ae47189154a76e908b8294b4627a92e59}{getDateMinus7Days}}(currentDate);}
+\DoxyCodeLine{88     \textcolor{keywordtype}{string} initialEventUrl = \textcolor{stringliteral}{"{}https://www.movebank.org/movebank/service/direct-\/read?entity\_type=event\&study\_id="{}}+studyName+\textcolor{stringliteral}{"{}\&timestamp\_start="{}}+past7Date+\textcolor{stringliteral}{"{}\&timestamp\_end="{}}+currentDate+\textcolor{stringliteral}{"{}\&license-\/md5="{}}+md5Value;}
+\DoxyCodeLine{89     \textcolor{keywordtype}{string} initialEventFilePath = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/outputEvent.txt"{}};}
+\DoxyCodeLine{90     \mbox{\hyperlink{classmoveBankRequests}{moveBankRequests}} newRequest7daysEvent(initialEventUrl,initialEventFilePath);}
+\DoxyCodeLine{91     newRequest7daysEvent.eventInitialParsing(homeDir,initialEventFilePath);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{94 \}}
+
+\end{DoxyCode}

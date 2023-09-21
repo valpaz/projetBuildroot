@@ -1,0 +1,176 @@
+\hypertarget{myFunctions_8h}{}\doxysection{my\+Functions.\+h File Reference}
+\label{myFunctions_8h}\index{myFunctions.h@{myFunctions.h}}
+
+
+Header file containing functions for date and gd image processing.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$gd.\+h$>$}\newline
+Include dependency graph for my\+Functions.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myFunctions_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myFunctions_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{myFunctions_8h_ac919c3950b37172c5ef02a12d27254b4}{current\+Date\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Get the current date and time as a string. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{myFunctions_8h_ae47189154a76e908b8294b4627a92e59}{get\+Date\+Minus7\+Days}} (const std\+::string \&input\+Date)
+\begin{DoxyCompactList}\small\item\em Get the date x days before a given date. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{myFunctions_8h_a105343ddc2adb79032589650db2c4949}{which\+Color}} (int \&current\+Day, int \&day, gd\+Image\+Ptr new\+Image)
+\begin{DoxyCompactList}\small\item\em Determine the color based on the number of days from now. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing functions for date and gd image processing. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{myFunctions_8h_ac919c3950b37172c5ef02a12d27254b4}\label{myFunctions_8h_ac919c3950b37172c5ef02a12d27254b4}} 
+\index{myFunctions.h@{myFunctions.h}!currentDateTime@{currentDateTime}}
+\index{currentDateTime@{currentDateTime}!myFunctions.h@{myFunctions.h}}
+\doxysubsubsection{\texorpdfstring{currentDateTime()}{currentDateTime()}}
+{\footnotesize\ttfamily string current\+Date\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the current date and time as a string. 
+
+\begin{DoxyReturn}{Returns}
+The current date. 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file my\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{13                          \{}
+\DoxyCodeLine{14     \textcolor{keyword}{auto} t = time(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{15     \textcolor{keyword}{auto} tLocal = *localtime(\&t);}
+\DoxyCodeLine{16     ostringstream oss;}
+\DoxyCodeLine{17     oss << put\_time(\&tLocal, \textcolor{stringliteral}{"{}\%Y\%m\%d\%H\%M\%S"{}});}
+\DoxyCodeLine{18     \textcolor{keyword}{auto} currentDate = oss.str();}
+\DoxyCodeLine{19     \textcolor{keywordflow}{return} currentDate;}
+\DoxyCodeLine{20 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{myFunctions_8h_ae47189154a76e908b8294b4627a92e59}\label{myFunctions_8h_ae47189154a76e908b8294b4627a92e59}} 
+\index{myFunctions.h@{myFunctions.h}!getDateMinus7Days@{getDateMinus7Days}}
+\index{getDateMinus7Days@{getDateMinus7Days}!myFunctions.h@{myFunctions.h}}
+\doxysubsubsection{\texorpdfstring{getDateMinus7Days()}{getDateMinus7Days()}}
+{\footnotesize\ttfamily string get\+Date\+Minus7\+Days (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input\+Date }\end{DoxyParamCaption})}
+
+
+
+Get the date x days before a given date. 
+
+Given a date in the format \char`\"{}\+YYYYMMDD,\char`\"{} it calculates and returns the date that is x days earlier in the same format.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Date} & The input date in \char`\"{}\+YYYYMMDD\char`\"{} format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The date x days before the input date. 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file my\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                                                      \{}
+\DoxyCodeLine{31     std::tm timeinfo = \{\};}
+\DoxyCodeLine{32     std::istringstream ss(inputDate);}
+\DoxyCodeLine{33     ss >> std::get\_time(\&timeinfo, \textcolor{stringliteral}{"{}\%Y\%m\%d"{}});}
+\DoxyCodeLine{34     std::time\_t timestamp = std::mktime(\&timeinfo) -\/ (7 * 24 * 60 * 60);}
+\DoxyCodeLine{35     std::tm resultTimeinfo = *std::localtime(\&timestamp);}
+\DoxyCodeLine{36     std::ostringstream oss;}
+\DoxyCodeLine{37     oss << std::put\_time(\&resultTimeinfo, \textcolor{stringliteral}{"{}\%Y\%m\%d"{}});}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordflow}{return} oss.str();}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{myFunctions_8h_a105343ddc2adb79032589650db2c4949}\label{myFunctions_8h_a105343ddc2adb79032589650db2c4949}} 
+\index{myFunctions.h@{myFunctions.h}!whichColor@{whichColor}}
+\index{whichColor@{whichColor}!myFunctions.h@{myFunctions.h}}
+\doxysubsubsection{\texorpdfstring{whichColor()}{whichColor()}}
+{\footnotesize\ttfamily int which\+Color (\begin{DoxyParamCaption}\item[{int \&}]{current\+Day,  }\item[{int \&}]{day,  }\item[{gd\+Image\+Ptr}]{new\+Image }\end{DoxyParamCaption})}
+
+
+
+Determine the color based on the number of days from now. 
+
+This function determines the color code based on the difference between the current day and the past days. It is used for image processing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Day} & The current day. \\
+\hline
+{\em day} & The past day. \\
+\hline
+{\em new\+Image} & A pointer to the GD image objet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color code. 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file my\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52                                                                \{}
+\DoxyCodeLine{53     \textcolor{keywordtype}{int} diff = currentDay -\/ day;}
+\DoxyCodeLine{54     \textcolor{keywordflow}{if} (diff == 0)\{}
+\DoxyCodeLine{55         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 0, 0, 255);}
+\DoxyCodeLine{56         \textcolor{keywordflow}{return} color;}
+\DoxyCodeLine{57     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 1)\{}
+\DoxyCodeLine{58         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 0, 0, 0);}
+\DoxyCodeLine{59         \textcolor{keywordflow}{return} color;       }
+\DoxyCodeLine{60     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 2)\{}
+\DoxyCodeLine{61         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 40, 40);}
+\DoxyCodeLine{62         \textcolor{keywordflow}{return} color;   }
+\DoxyCodeLine{63     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 3)\{}
+\DoxyCodeLine{64         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 80, 80);}
+\DoxyCodeLine{65         \textcolor{keywordflow}{return} color;   }
+\DoxyCodeLine{66     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 4)\{}
+\DoxyCodeLine{67         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 120, 120);}
+\DoxyCodeLine{68         \textcolor{keywordflow}{return} color;   }
+\DoxyCodeLine{69     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 5)\{}
+\DoxyCodeLine{70         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 160, 160);}
+\DoxyCodeLine{71         \textcolor{keywordflow}{return} color;   }
+\DoxyCodeLine{72     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 6)\{}
+\DoxyCodeLine{73         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 200, 200);}
+\DoxyCodeLine{74         \textcolor{keywordflow}{return} color;   }
+\DoxyCodeLine{75     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(diff == 7)\{}
+\DoxyCodeLine{76         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 240, 240);}
+\DoxyCodeLine{77         \textcolor{keywordflow}{return} color;   }
+\DoxyCodeLine{78     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{79         \textcolor{keywordtype}{int} color = gdImageColorAllocate(newImage, 255, 240, 240);}
+\DoxyCodeLine{80         \textcolor{keywordflow}{return} color;           }
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,91 @@
+\hypertarget{updateEvent_8cpp}{}\doxysection{update\+Event.\+cpp File Reference}
+\label{updateEvent_8cpp}\index{updateEvent.cpp@{updateEvent.cpp}}
+
+
+This program updates events from the Move\+Bank web service.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include \char`\"{}my\+Functions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}request.\+h\char`\"{}}\newline
+Include dependency graph for update\+Event.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{updateEvent_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{updateEvent_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em This is the main function of the update part of this program current. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This program updates events from the Move\+Bank web service. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{updateEvent_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{updateEvent_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{updateEvent.cpp@{updateEvent.cpp}!main@{main}}
+\index{main@{main}!updateEvent.cpp@{updateEvent.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This is the main function of the update part of this program current. 
+
+This main function updates events from the Move\+Bank database. It reads the last update date using last\+Date\+Update.\+txt date file and uses that date to get the new events. The results are saved in the output\+Update\+Event.\+txt file. Then, the update date is updated to the current date and stored in last\+Date\+Update.\+txt file again.
+
+\begin{DoxyReturn}{Returns}
+0 on success. 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file update\+Event.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27            \{}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{comment}{// Get last date}}
+\DoxyCodeLine{30     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* homeDir = getenv(\textcolor{stringliteral}{"{}HOME"{}});}
+\DoxyCodeLine{31     ifstream filedate(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/lastDateUpdate.txt"{}});}
+\DoxyCodeLine{32     \textcolor{keywordtype}{string} laDate;}
+\DoxyCodeLine{33     \textcolor{keywordtype}{string} lastDate;}
+\DoxyCodeLine{34     \textcolor{keywordflow}{while} (getline(filedate, laDate)) \{}
+\DoxyCodeLine{35         lastDate=laDate;\}}
+\DoxyCodeLine{36     filedate.close();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{comment}{// Get md5 hash}}
+\DoxyCodeLine{39     ifstream fileMd5(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/md5Value.txt"{}});}
+\DoxyCodeLine{40     \textcolor{keywordtype}{string} md5;}
+\DoxyCodeLine{41     \textcolor{keywordtype}{string} md5Value;}
+\DoxyCodeLine{42     \textcolor{keywordflow}{while} (getline(fileMd5, md5)) \{}
+\DoxyCodeLine{43         md5Value=md5;\}}
+\DoxyCodeLine{44     filedate.close();}
+\DoxyCodeLine{45     \textcolor{keywordtype}{string} currentDate = \mbox{\hyperlink{myFunctions_8h_ac919c3950b37172c5ef02a12d27254b4}{currentDateTime}}()+\textcolor{stringliteral}{"{}000"{}};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{comment}{// Configure the URL for updating events}}
+\DoxyCodeLine{48     \textcolor{keywordtype}{string} studyName = \textcolor{stringliteral}{"{}1266784970"{}};}
+\DoxyCodeLine{49     \textcolor{keywordtype}{string} updateEventUrl = \textcolor{stringliteral}{"{}https://www.movebank.org/movebank/service/direct-\/read?entity\_type=event\&study\_id="{}}+studyName+\textcolor{stringliteral}{"{}\&timestamp\_start="{}}+lastDate+\textcolor{stringliteral}{"{}\&timestamp\_end="{}}+currentDate+\textcolor{stringliteral}{"{}\&license-\/md5="{}}+md5Value;}
+\DoxyCodeLine{50     \textcolor{keywordtype}{string} updateEventFilePath = string(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/outputUpdateEvent.txt"{}};}
+\DoxyCodeLine{51     \mbox{\hyperlink{classmoveBankRequests}{moveBankRequests}} newRequestUpdateEvent(updateEventUrl,updateEventFilePath);}
+\DoxyCodeLine{52     newRequestUpdateEvent.eventUpdateparsing(homeDir,updateEventFilePath);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{comment}{// Last date become the current date for the next update event}}
+\DoxyCodeLine{55     ofstream fileDate(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/lastDateUpdate.txt"{}});}
+\DoxyCodeLine{56     fileDate << currentDate << endl;}
+\DoxyCodeLine{57     fileDate.close();}
+\DoxyCodeLine{58     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
