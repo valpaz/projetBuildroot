@@ -103,7 +103,7 @@ int main() {
 				int blue = gdImageColorAllocate(backgroundInd, 0, 0, 255);
 
 				int cptFirst = 0;
-				
+
 				while (getline(fileOutput, line)) {
 
 					stringstream ss1(line);
@@ -156,6 +156,8 @@ int main() {
 				// avoid bird from other location than France (Sicilia and Israel)
 				if (48 < latitude && latitude < 49 && 2 < longitude && longitude < 3) {
 					string fileIndPath = newFolder+mapName+".png";
+					cout << "test" << endl;
+					cout << fileIndPath << endl;
 					FILE *carteInd = fopen(fileIndPath.c_str(), "wb");
 					gdImagePng(backgroundInd, carteInd);	
 					fclose(carteInd);}

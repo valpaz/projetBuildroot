@@ -51,7 +51,7 @@ string getDateMinus7Days(const std::string& inputDate) {
 int main() {
 
     // Creation de l'espace de stockage //
-    string folderPath = "/home/david/progMoveBankDir/indFile/"; // Remplacez par le chemin du dossier que vous souhaitez vider
+    string folderPath = "/home/david/progMoveBankDir/indFile/";
     for (const auto& entry : filesystem::directory_iterator(folderPath)) {
         filesystem::remove_all(entry.path());}
     string Path = "/home/david/progMoveBankDir/";
@@ -98,7 +98,7 @@ int main() {
         cout << "Le fichier d'individus n'existe pas" << endl;
 
         // Récupération des données sur les tag de l'étude //
-        string adresse = "https://www.movebank.org/movebank/service/direct-read?entity_type=tag&study_id=1266784970&license-md5="+md5; // Remplacez par l'URL de votre choix
+        string adresse = "https://www.movebank.org/movebank/service/direct-read?entity_type=tag&study_id=1266784970&license-md5="+md5;
         const char *url = adresse.c_str();
         CURLcode res;
         curl_easy_setopt(curl, CURLOPT_URL, url);
@@ -190,7 +190,7 @@ int main() {
                 cptt = 0;
                 while (getline(ss, valeur, ',')) {
                     if (cptt==4){
-                        valeur.erase(valeur.find_last_not_of("\n\r") + 1); // Enleve le \n a la fin de la ligne           
+                        valeur.erase(valeur.find_last_not_of("\n\r") + 1);         
                         if (valeur==actualId){
                             fileInd << ligneEvent << endl;
 
