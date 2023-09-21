@@ -34,18 +34,15 @@ string calculateMD5(const std::string& filename) {
 }
 
 string getDateMinus7Days(const std::string& inputDate) {
-    // Convertissez la date d'entrée en une structure tm
     std::tm timeinfo = {};
     std::istringstream ss(inputDate);
     ss >> std::get_time(&timeinfo, "%Y%m%d");
 
-    // Soustrayez 7 jours en secondes (7 jours * 24 heures * 60 minutes * 60 secondes)
+    // 7 jours en secondes (7 jours * 24 heures * 60 minutes * 60 secondes)
     std::time_t timestamp = std::mktime(&timeinfo) - (7 * 24 * 60 * 60);
-
-    // Convertissez le résultat en une nouvelle structure tm
     std::tm resultTimeinfo = *std::localtime(&timestamp);
 
-    // Formatez la nouvelle date en tant que chaîne de caractères au format "YYYYMMDD"
+    // Nouvelle date en tant que chaîne de caractères au format "YYYYMMDD"
     std::ostringstream oss;
     oss << std::put_time(&resultTimeinfo, "%Y%m%d");
 

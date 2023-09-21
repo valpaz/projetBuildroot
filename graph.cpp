@@ -86,7 +86,6 @@ int main() {
 		string fileName = entry.path().filename().string();
 		string mapName = fileName.substr(0, fileName.find_last_of('.'));
 		cout << entry.path().string() << endl;
-		//FILE *carteInd = fopen("/home/david/progMoveBankDir/indGraph/carte.png", "rb");
 		// Check if file not empty
 		fileOutput.seekg(0,ios::end);
 		if (!fileOutput.tellg() == 0){
@@ -95,8 +94,8 @@ int main() {
 			//Check if file start with a number
 			if (isdigit(fileName[0])){
 				FILE *carteBG = fopen("/home/david/progMoveBankDir/carte.png", "rb");
+
 				// Each individual get an associated map
-				
 				gdImagePtr backgroundInd = gdImageCreateFromPng(carteBG);
 				gdImagePtr newImageInd = gdImageCreateTrueColor(1722, 738);
 				gdImageCopy(newImageInd, backgroundInd, 0, 0, 0, 0, 1722, 738);
@@ -104,6 +103,7 @@ int main() {
 				int blue = gdImageColorAllocate(backgroundInd, 0, 0, 255);
 
 				int cptFirst = 0;
+				
 				while (getline(fileOutput, line)) {
 
 					stringstream ss1(line);
@@ -124,9 +124,11 @@ int main() {
 						cpt1++;
 
 					}
-					
+					// Convertion from google map to libGD
 					x = static_cast<double>((longitude - 2.036005930852261) * (width / (2.6273598267740628 - 2.036005930852261)));
 					y = height - static_cast<double>((latitude - 48.77337476303239) * (height / (48.94012387335636 - 48.77337476303239))); // pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche
+					
+					// set line and point
 					gdImageSetPixel(newImage, x, y, black);
 					gdImageSetPixel(backgroundInd, x, y, black);
 					if (cptFirst > 0 ){
@@ -145,6 +147,7 @@ int main() {
 							lastLongitude = stod(substr2);}
 						cpt2++;
 					}
+					// Convertion from google map to libGD
 					lastX = static_cast<double>((lastLongitude - 2.036005930852261) * (width / (2.6273598267740628 - 2.036005930852261)));
 					lastY = height - static_cast<double>((lastLatitude - 48.77337476303239) * (height / (48.94012387335636 - 48.77337476303239))); // pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche
 					cptFirst++;
@@ -178,3 +181,17 @@ int main() {
 // 48.94012387335636, 2.6273598267740628 NE
 // 48.773928364313456, 2.627065674714942 SE
 // 48.773554769497984, 2.036252897418881 SW
+// xmin = 2.036005930852261
+// xmax = 2.6273598267740628
+// ymax = 48.94012387335636
+// ymin = 48.77337476303239
+//
+// 48.77337476303239, 2.036005930852261
+
+// 1722x738
+
+//longetitude c'est X
+// latittude c'est Y
+
+// G846  tag : 2612465057 
+// id : 2612460752
