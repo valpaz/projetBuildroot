@@ -20,12 +20,17 @@ git clone https://github.com/valpaz/projetBuildroot.git
 ## Utilisation
 
 **Compilation :**
-g++ -std=c++17 -o testGraph graph.cpp -lgd  
-g++ -std=c++17 -o testP main.cpp -lcurl -lcryptopp  
+g++ -std=c++17 -o launcher main.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd  
+g++ -std=c++17 -o updateEvent updateEvent.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd  
+g++ -std=c++17 -o graph graph.cpp myFunctions.cpp -lgd  
 
 This program is intended to be used with cron as it can be launch every hours like this :
-*1 * * * * /your/path/main*
+*1 * * * * /your/path/updateEvent*
 *1 * * * * /your/path/graph*
+(don't forget to launch *launcher* first as it initiate the all program
 
-**But you can use it without it too**, just by executing *./main* then *./graph*
+**But you can use it without it too**, just by executing :
+ -*Launcher* 
+ -*updateEvent* when you want to update your data
+ -*graph* when you want to retrieve new graph from your data
 
