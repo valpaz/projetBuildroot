@@ -13,16 +13,19 @@ It aim to see the live movement of this population of crow.
 git clone https://github.com/valpaz/projetBuildroot.git
 ```
 **C++ library dependance:**  
+-Cmake (cmake)  
 -curl (libcurl4-openssl-dev)  
 -cryptopp (libcrypto++-dev)  
 -libGD (libgd-dev)  
 
+
 ## Utilisation
 
-**Compilation :**  
-g++ -std=c++17 -o launcher main.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd  
-g++ -std=c++17 -o updateEvent updateEvent.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd  
-g++ -std=c++17 -o graph graph.cpp myFunctions.cpp -lgd  
+**Compilation use CMakeLists.txt :**  
+>mkdir build
+>cd build
+>cmake ..
+>make
 
 This program is intended to be used with cron as it can be launch every hours like this :  
 *1 * * * * /your/path/updateEvent*  
