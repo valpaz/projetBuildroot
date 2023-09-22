@@ -14,8 +14,7 @@ Generates movement maps for each individuals and also for all of them combines t
 {\ttfamily \#include $<$ctime$>$}\newline
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include \char`\"{}my\+Functions.\+h\char`\"{}}\newline
-Include dependency graph for graph.\+cpp\+:
-\nopagebreak
+Include dependency graph for graph.\+cpp\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -134,62 +133,69 @@ Definition at line 33 of file graph.\+cpp.
 \DoxyCodeLine{113                     \}}
 \DoxyCodeLine{114 }
 \DoxyCodeLine{115                     \textcolor{comment}{// Convertion from google map to libGD output}}
-\DoxyCodeLine{116                     x = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((longitude -\/ 2.036005930852261) * (width / (2.6273598267740628 -\/ 2.036005930852261)));}
-\DoxyCodeLine{117                     y = height -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((latitude -\/ 48.77337476303239) * (height / (48.94012387335636 -\/ 48.77337476303239))); \textcolor{comment}{// pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche}}
-\DoxyCodeLine{118                     }
-\DoxyCodeLine{119                     \textcolor{comment}{// set lines and points}}
-\DoxyCodeLine{120                     gdImageSetPixel(newImage, x, y, black);}
-\DoxyCodeLine{121                     gdImageSetPixel(backgroundInd, x, y, black);}
-\DoxyCodeLine{122                     \textcolor{keywordflow}{if} (cptFirst > 0 )\{}
-\DoxyCodeLine{123                         gdImageLine(newImage, x, y, lastX, lastY, couleur);}
-\DoxyCodeLine{124                         gdImageLine(backgroundInd, x, y, lastX, lastY, couleur);}
-\DoxyCodeLine{125                     \}}
+\DoxyCodeLine{116                     x = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((longitude -\/ 2.29537618870689) * (width / (2.467592180568534 -\/ 2.29537618870689)));}
+\DoxyCodeLine{117                     y = height -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((latitude -\/ 48.79861078994466) * (height / (48.89937259067075 -\/ 48.79861078994466)));}
+\DoxyCodeLine{118                     \textcolor{comment}{// x = static\_cast<double>((longitude -\/ 2.036005930852261) * (width / (2.6273598267740628 -\/ 2.036005930852261)));}}
+\DoxyCodeLine{119                     \textcolor{comment}{// y = height -\/ static\_cast<double>((latitude -\/ 48.77337476303239) * (height / (48.94012387335636 -\/ 48.77337476303239)));                   }}
+\DoxyCodeLine{120                     \textcolor{comment}{// set lines and points}}
+\DoxyCodeLine{121                     gdImageFilledEllipse(newImage, x, y, 2 * 3, 2 * 3, blue);}
+\DoxyCodeLine{122                     gdImageFilledEllipse(backgroundInd, x, y, 2 * 3, 2 * 3, blue);}
+\DoxyCodeLine{123                     \textcolor{comment}{// gdImageSetPixel(newImage, x, y, black);}}
+\DoxyCodeLine{124                     \textcolor{comment}{// gdImageSetPixel(backgroundInd, x, y, black);}}
+\DoxyCodeLine{125                     \textcolor{keywordflow}{if} (cptFirst > 0 )\{}
 \DoxyCodeLine{126 }
-\DoxyCodeLine{127                     \textcolor{comment}{// Previous latitude and longitude}}
-\DoxyCodeLine{128                     stringstream ss2(line);}
-\DoxyCodeLine{129                     \textcolor{keywordtype}{int} cpt2 = 0;}
-\DoxyCodeLine{130                     \textcolor{keywordtype}{string} substr2;}
-\DoxyCodeLine{131                     \textcolor{keywordflow}{while} (ss2.good()) \{}
-\DoxyCodeLine{132                         getline(ss2, substr2, \textcolor{charliteral}{','});}
-\DoxyCodeLine{133                         \textcolor{keywordflow}{if} (cpt2 == 1)\{}
-\DoxyCodeLine{134                             lastLatitude = stod(substr2);\}}
-\DoxyCodeLine{135                         \textcolor{keywordflow}{if} (cpt2 == 2)\{}
-\DoxyCodeLine{136                             lastLongitude = stod(substr2);\}}
-\DoxyCodeLine{137                         cpt2++;}
-\DoxyCodeLine{138                     \}}
-\DoxyCodeLine{139                     }
-\DoxyCodeLine{140                     \textcolor{comment}{// Convertion from google map to libGD}}
-\DoxyCodeLine{141                     lastX = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((lastLongitude -\/ 2.036005930852261) * (width / (2.6273598267740628 -\/ 2.036005930852261)));}
-\DoxyCodeLine{142                     lastY = height -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((lastLatitude -\/ 48.77337476303239) * (height / (48.94012387335636 -\/ 48.77337476303239))); \textcolor{comment}{// pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche}}
-\DoxyCodeLine{143                     cptFirst++;}
-\DoxyCodeLine{144                 \}}
-\DoxyCodeLine{145                 }
-\DoxyCodeLine{146                 \textcolor{comment}{//Create a map for each individual}}
-\DoxyCodeLine{147                 \textcolor{comment}{// avoid bird from other location than France (Sicilia and Israel)}}
-\DoxyCodeLine{148                 \textcolor{keywordflow}{if} (48 < latitude \&\& latitude < 49 \&\& 2 < longitude \&\& longitude < 3) \{}
-\DoxyCodeLine{149                     \textcolor{keywordtype}{string} fileIndPath = newFolder+mapName+\textcolor{stringliteral}{"{}.png"{}};}
-\DoxyCodeLine{150                     cout << fileIndPath << endl;}
-\DoxyCodeLine{151                     FILE *mapInd = fopen(fileIndPath.c\_str(), \textcolor{stringliteral}{"{}wb"{}});}
-\DoxyCodeLine{152                     gdImagePng(backgroundInd, mapInd);  }
-\DoxyCodeLine{153                     fclose(mapInd);\}}
-\DoxyCodeLine{154                 fclose(mapBG);}
-\DoxyCodeLine{155                 gdImageDestroy(backgroundInd);}
-\DoxyCodeLine{156                 gdImageDestroy(newImageInd);}
-\DoxyCodeLine{157                 }
-\DoxyCodeLine{158 }
-\DoxyCodeLine{159             \}}
-\DoxyCodeLine{160 }
-\DoxyCodeLine{161         \}}
-\DoxyCodeLine{162         fileOutput.close();}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{164     \}}
-\DoxyCodeLine{165     FILE *outputFile = fopen((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/mapAll.png"{}}).c\_str(), \textcolor{stringliteral}{"{}wb"{}});}
-\DoxyCodeLine{166     gdImagePng(newImage, outputFile);}
-\DoxyCodeLine{167     fclose(outputFile);}
-\DoxyCodeLine{168     gdImageDestroy(background);}
-\DoxyCodeLine{169     gdImageDestroy(newImage);}
-\DoxyCodeLine{170     cout << \textcolor{stringliteral}{"{}Done."{}} << endl;}
-\DoxyCodeLine{171     \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{172 \}}
+\DoxyCodeLine{127                         gdImageLine(newImage, x, y-\/1, lastX, lastY-\/1, couleur);}
+\DoxyCodeLine{128                         gdImageLine(newImage, x, y+1, lastX, lastY+1, couleur);}
+\DoxyCodeLine{129                         gdImageLine(newImage, x, y, lastX, lastY, couleur);}
+\DoxyCodeLine{130                         gdImageLine(backgroundInd, x, y-\/1, lastX, lastY-\/1, couleur);}
+\DoxyCodeLine{131                         gdImageLine(backgroundInd, x, y+1, lastX, lastY+1, couleur);}
+\DoxyCodeLine{132                         gdImageLine(backgroundInd, x, y, lastX, lastY, couleur);}
+\DoxyCodeLine{133                     \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135                     \textcolor{comment}{// Previous latitude and longitude}}
+\DoxyCodeLine{136                     stringstream ss2(line);}
+\DoxyCodeLine{137                     \textcolor{keywordtype}{int} cpt2 = 0;}
+\DoxyCodeLine{138                     \textcolor{keywordtype}{string} substr2;}
+\DoxyCodeLine{139                     \textcolor{keywordflow}{while} (ss2.good()) \{}
+\DoxyCodeLine{140                         getline(ss2, substr2, \textcolor{charliteral}{','});}
+\DoxyCodeLine{141                         \textcolor{keywordflow}{if} (cpt2 == 1)\{}
+\DoxyCodeLine{142                             lastLatitude = stod(substr2);\}}
+\DoxyCodeLine{143                         \textcolor{keywordflow}{if} (cpt2 == 2)\{}
+\DoxyCodeLine{144                             lastLongitude = stod(substr2);\}}
+\DoxyCodeLine{145                         cpt2++;}
+\DoxyCodeLine{146                     \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148                     \textcolor{comment}{// Convertion from google map to libGD}}
+\DoxyCodeLine{149                     lastX = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((lastLongitude -\/ 2.29537618870689) * (width / (2.467592180568534 -\/ 2.29537618870689)));}
+\DoxyCodeLine{150                     lastY = height -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}((lastLatitude -\/ 48.79861078994466) * (height / (48.89937259067075 -\/ 48.79861078994466)));}
+\DoxyCodeLine{151                     cptFirst++;}
+\DoxyCodeLine{152                 \}       }
+\DoxyCodeLine{153                 \textcolor{comment}{//Create a map for each individual}}
+\DoxyCodeLine{154                 \textcolor{comment}{// avoid bird from other location than France (Sicilia and Israel)}}
+\DoxyCodeLine{155                 \textcolor{keywordflow}{if} (48 < latitude \&\& latitude < 49 \&\& 2 < longitude \&\& longitude < 3) \{}
+\DoxyCodeLine{156                     \textcolor{keywordtype}{string} fileIndPath = newFolder+mapName+\textcolor{stringliteral}{"{}.png"{}};}
+\DoxyCodeLine{157                     cout << fileIndPath << endl;}
+\DoxyCodeLine{158                     FILE *mapInd = fopen(fileIndPath.c\_str(), \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{159                     gdImagePng(backgroundInd, mapInd);  }
+\DoxyCodeLine{160                     fclose(mapInd);\}}
+\DoxyCodeLine{161                 fclose(mapBG);}
+\DoxyCodeLine{162                 gdImageDestroy(backgroundInd);}
+\DoxyCodeLine{163                 gdImageDestroy(newImageInd);}
+\DoxyCodeLine{164                 }
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166             \}}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168         \}}
+\DoxyCodeLine{169         fileOutput.close();}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \}}
+\DoxyCodeLine{172     FILE *outputFile = fopen((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/mapAll.png"{}}).c\_str(), \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{173     gdImagePng(newImage, outputFile);}
+\DoxyCodeLine{174     fclose(outputFile);}
+\DoxyCodeLine{175     gdImageDestroy(background);}
+\DoxyCodeLine{176     gdImageDestroy(newImage);}
+\DoxyCodeLine{177     cout << \textcolor{stringliteral}{"{}Done."{}} << endl;}
+\DoxyCodeLine{178     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{179 \}}
 
 \end{DoxyCode}

@@ -36,11 +36,12 @@ public:
 	 * @param outputFilePath This is the path to where the data from the request are stored
 	 */
 	moveBankAuth(const string &homeDir,const string &adresse);
-	 /**
-     * @brief Destructor for moveBankAuth.
-     * 
+	/**
+	 * @brief cleaner for moveBankAuth as the destructor bring core dump error with curl cleanup
+	 * 
 	 */
-	~moveBankAuth();
+	void cleanUp();
+	// ~moveBankAuth();
     /**
      * @brief Calculating the md5 using the license_terms.txt file
      * 

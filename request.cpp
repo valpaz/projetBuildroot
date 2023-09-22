@@ -29,14 +29,23 @@ moveBankRequests::moveBankRequests(const string &adresse, const string &outputFi
     fclose(outputFile);
 }
 /**
- * @brief Destructor for moveBankRequests.
+ * @brief cleaner for moveBankAuth as the destructor bring core dump error with curl cleanup
  * 
  */
-moveBankRequests::~moveBankRequests() {
+void moveBankRequests::cleanUp() {
     if (curl) {
         curl_easy_cleanup(curl);
     }
 }
+/**
+ * @brief Destructor for moveBankRequests.
+ * 
+ */
+// moveBankRequests::~moveBankRequests() {
+//     if (curl) {
+//         curl_easy_cleanup(curl);
+//     }
+// }
 
 /**
  * @brief Parsing for moveBank individual data.

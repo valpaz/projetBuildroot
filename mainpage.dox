@@ -1,0 +1,28 @@
+/**
+ * @mainpage Documentation de Mon Projet
+ *
+ * Bienvenue dans la documentation de Mon Projet.
+ *
+ * Cette documentation contient des informations sur l'architecture, les fonctionnalités et l'utilisation de Mon Projet.
+ *
+ * @section introduction Introduction
+ *
+ * Mon Projet est un logiciel qui ...
+ *
+ * @section architecture Architecture
+ *
+ * Voici un schéma de l'architecture de Mon Projet :
+ *
+ * @image architecture.png "Architecture de Mon Projet"
+ *
+ * @section utilisation Utilisation
+ *
+ * Pour utiliser Mon Projet, suivez ces étapes :
+ *
+ * - Étape 1 : ...
+ * - Étape 2 : ...
+ *
+ * @section contact Contact
+ *
+ * Pour toute question ou commentaire, veuillez nous contacter à contact@monprojet.com.
+ */

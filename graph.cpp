@@ -113,14 +113,22 @@ int main() {
 					}
 
 					// Convertion from google map to libGD output
-					x = static_cast<double>((longitude - 2.036005930852261) * (width / (2.6273598267740628 - 2.036005930852261)));
-					y = height - static_cast<double>((latitude - 48.77337476303239) * (height / (48.94012387335636 - 48.77337476303239))); // pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche
-					
+					x = static_cast<double>((longitude - 2.29537618870689) * (width / (2.467592180568534 - 2.29537618870689)));
+					y = height - static_cast<double>((latitude - 48.79861078994466) * (height / (48.89937259067075 - 48.79861078994466)));
+					// x = static_cast<double>((longitude - 2.036005930852261) * (width / (2.6273598267740628 - 2.036005930852261)));
+					// y = height - static_cast<double>((latitude - 48.77337476303239) * (height / (48.94012387335636 - 48.77337476303239)));					
 					// set lines and points
-					gdImageSetPixel(newImage, x, y, black);
-					gdImageSetPixel(backgroundInd, x, y, black);
+					gdImageFilledEllipse(newImage, x, y, 2 * 3, 2 * 3, blue);
+					gdImageFilledEllipse(backgroundInd, x, y, 2 * 3, 2 * 3, blue);
+					// gdImageSetPixel(newImage, x, y, black);
+					// gdImageSetPixel(backgroundInd, x, y, black);
 					if (cptFirst > 0 ){
+
+						gdImageLine(newImage, x, y-1, lastX, lastY-1, couleur);
+						gdImageLine(newImage, x, y+1, lastX, lastY+1, couleur);
 						gdImageLine(newImage, x, y, lastX, lastY, couleur);
+						gdImageLine(backgroundInd, x, y-1, lastX, lastY-1, couleur);
+						gdImageLine(backgroundInd, x, y+1, lastX, lastY+1, couleur);
 						gdImageLine(backgroundInd, x, y, lastX, lastY, couleur);
 					}
 
@@ -136,13 +144,12 @@ int main() {
 							lastLongitude = stod(substr2);}
 						cpt2++;
 					}
-					
+
 					// Convertion from google map to libGD
-					lastX = static_cast<double>((lastLongitude - 2.036005930852261) * (width / (2.6273598267740628 - 2.036005930852261)));
-					lastY = height - static_cast<double>((lastLatitude - 48.77337476303239) * (height / (48.94012387335636 - 48.77337476303239))); // pas sur car dans libGD le 0 est en haut a gauche et sur google map en bas a gauche
+					lastX = static_cast<double>((lastLongitude - 2.29537618870689) * (width / (2.467592180568534 - 2.29537618870689)));
+					lastY = height - static_cast<double>((lastLatitude - 48.79861078994466) * (height / (48.89937259067075 - 48.79861078994466)));
 					cptFirst++;
-				}
-				
+				}		
 				//Create a map for each individual
 				// avoid bird from other location than France (Sicilia and Israel)
 				if (48 < latitude && latitude < 49 && 2 < longitude && longitude < 3) {
@@ -170,6 +177,16 @@ int main() {
     cout << "Done." << endl;
     return 0;
 }
+
+// NW 48.89937259067075, 2.29537618870689
+// NE 48.89929532761945, 2.467486943304439
+// SE 48.79861078994466, 2.467592180568534
+// SW 48.79836557102456, 2.295839965625057
+
+// xmin = 2.29537618870689
+// xman = 2.467592180568534
+// ymax = 48.89937259067075
+// ymin = 48.79861078994466
 
 // 48.938985224316646, 2.036224305182475 NW
 // 48.94012387335636, 2.6273598267740628 NE

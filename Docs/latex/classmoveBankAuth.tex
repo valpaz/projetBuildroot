@@ -14,9 +14,9 @@ This class is used to authentificate to the move\+Bank database.
 \item 
 \mbox{\hyperlink{classmoveBankAuth_aed11f77749667280c1ac79dcfbee1f4f}{move\+Bank\+Auth}} (const string \&home\+Dir, const string \&adresse)
 \begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classmoveBankAuth}{move\+Bank\+Auth}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmoveBankAuth_a12666b6fc1773dbbaae64f48406c264a}\label{classmoveBankAuth_a12666b6fc1773dbbaae64f48406c264a}} 
-\mbox{\hyperlink{classmoveBankAuth_a12666b6fc1773dbbaae64f48406c264a}{$\sim$move\+Bank\+Auth}} ()
-\begin{DoxyCompactList}\small\item\em Destructor for \mbox{\hyperlink{classmoveBankAuth}{move\+Bank\+Auth}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmoveBankAuth_a1f638a565bae4ef52cb6a0d0c7f2d277}\label{classmoveBankAuth_a1f638a565bae4ef52cb6a0d0c7f2d277}} 
+void \mbox{\hyperlink{classmoveBankAuth_a1f638a565bae4ef52cb6a0d0c7f2d277}{clean\+Up}} ()
+\begin{DoxyCompactList}\small\item\em cleaner for \mbox{\hyperlink{classmoveBankAuth}{move\+Bank\+Auth}} as the destructor bring core dump error with curl cleanup \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classmoveBankAuth_a86c494bd9bd48c749b88a2ac72583d64}{calculate\+MD5}} (string \&file\+Name)
 \begin{DoxyCompactList}\small\item\em Calculating the md5 using the license\+\_\+terms.\+txt file. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classmoveBankAuth_a2eb10b181a7e162ad31daa2dd734de5e}{get\+MD5}} ()
@@ -111,19 +111,19 @@ This method takes a file as input, calculates its MD5 hash and returns the resul
 \end{DoxyParams}
 
 
-Definition at line 54 of file authentification.\+cpp.
+Definition at line 60 of file authentification.\+cpp.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{54                                                  \{}
-\DoxyCodeLine{55     CryptoPP::Weak::MD5 md5;}
-\DoxyCodeLine{56     \textcolor{keywordtype}{string} result;}
-\DoxyCodeLine{57     ifstream file(fileName);}
-\DoxyCodeLine{58     CryptoPP::FileSource(file, \textcolor{keyword}{true}, \textcolor{keyword}{new} CryptoPP::HashFilter(md5, \textcolor{keyword}{new} CryptoPP::StringSink(result)));}
-\DoxyCodeLine{59     \textcolor{keywordtype}{string} md5Hex;}
-\DoxyCodeLine{60     CryptoPP::StringSource(result, \textcolor{keyword}{true}, \textcolor{keyword}{new} CryptoPP::HexEncoder(\textcolor{keyword}{new} CryptoPP::StringSink(md5Hex), \textcolor{keyword}{false}));}
-\DoxyCodeLine{61     \textcolor{keywordflow}{return} md5Hex;}
-\DoxyCodeLine{62 \}}
+\DoxyCodeLine{60                                                  \{}
+\DoxyCodeLine{61     CryptoPP::Weak::MD5 md5;}
+\DoxyCodeLine{62     \textcolor{keywordtype}{string} result;}
+\DoxyCodeLine{63     ifstream file(fileName);}
+\DoxyCodeLine{64     CryptoPP::FileSource(file, \textcolor{keyword}{true}, \textcolor{keyword}{new} CryptoPP::HashFilter(md5, \textcolor{keyword}{new} CryptoPP::StringSink(result)));}
+\DoxyCodeLine{65     \textcolor{keywordtype}{string} md5Hex;}
+\DoxyCodeLine{66     CryptoPP::StringSource(result, \textcolor{keyword}{true}, \textcolor{keyword}{new} CryptoPP::HexEncoder(\textcolor{keyword}{new} CryptoPP::StringSink(md5Hex), \textcolor{keyword}{false}));}
+\DoxyCodeLine{67     \textcolor{keywordflow}{return} md5Hex;}
+\DoxyCodeLine{68 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classmoveBankAuth_a2eb10b181a7e162ad31daa2dd734de5e}\label{classmoveBankAuth_a2eb10b181a7e162ad31daa2dd734de5e}} 
@@ -138,13 +138,13 @@ Get the md5 key.
 
 Return the md5 generated hash 
 
-Definition at line 70 of file authentification.\+cpp.
+Definition at line 76 of file authentification.\+cpp.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{70                             \{}
-\DoxyCodeLine{71     \textcolor{keywordflow}{return} md5;}
-\DoxyCodeLine{72 \}}
+\DoxyCodeLine{76                             \{}
+\DoxyCodeLine{77     \textcolor{keywordflow}{return} md5;}
+\DoxyCodeLine{78 \}}
 
 \end{DoxyCode}
 

@@ -15,11 +15,6 @@
 
 using namespace std;
 
-// ==2368367==    definitely lost: 10,832 bytes in 2 blocks
-// ==2368367==    indirectly lost: 1,426,995 bytes in 22,385 blocks
-// ==2368367==      possibly lost: 1,858 bytes in 20 blocks
-// ==2368367==    still reachable: 38 bytes in 2 blocks
-// ==2368367==         suppressed: 0 bytes in 0 blocks
 
 
 // g++ -std=c++17 -o launcher main.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
@@ -76,26 +71,26 @@ int main() {
     string individualUrl = "https://www.movebank.org/movebank/service/direct-read?entity_type=tag&study_id="+studyName+"&license-md5="+md5Value;
     string individualFilePath = string(homeDir) + "/moveBankProjet/data/outputInd.txt";
     moveBankRequests newRequestId(individualUrl,individualFilePath);
+    newRequestId.cleanUp();
     newRequestId.idParsing(homeDir,individualFilePath);
 
     // Store MD5 hash
     ofstream fileMd5(string(homeDir) + "/moveBankProjet/data/md5Value.txt");
     fileMd5 << md5Value << endl;
     fileMd5.close();    
-
+    
     // Get current date
     string currentDate = currentDateTime();
     ofstream fileDate(string(homeDir) + "/moveBankProjet/data/lastDateUpdate.txt");
     fileDate << currentDate+"000" << endl;
     fileDate.close();
 
-
     // Retrieve and process event data
     string past7Date = getDateMinus7Days(currentDate);
     string initialEventUrl = "https://www.movebank.org/movebank/service/direct-read?entity_type=event&study_id="+studyName+"&timestamp_start="+past7Date+"&timestamp_end="+currentDate+"&license-md5="+md5Value;
     string initialEventFilePath = string(homeDir) + "/moveBankProjet/data/outputEvent.txt";
     moveBankRequests newRequest7daysEvent(initialEventUrl,initialEventFilePath);
+    newRequest7daysEvent.cleanUp();
     newRequest7daysEvent.eventInitialParsing(homeDir,initialEventFilePath);
-
-    return 0;
+    cout << "Your data are in moveBankProjet folder" << endl;
 }

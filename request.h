@@ -36,7 +36,12 @@ public:
      * @brief Destructor for moveBankRequests.
      * 
 	 */
-	~moveBankRequests();
+	/**
+	 * @brief cleaner for moveBankAuth as the destructor bring core dump error with curl cleanup
+	 * 
+	 */
+	void cleanUp();
+	// ~moveBankRequests();
     /**
      * @brief Parsing for moveBank individual data.
      * 

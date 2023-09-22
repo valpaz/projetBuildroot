@@ -35,14 +35,20 @@ moveBankAuth::moveBankAuth(const string &homeDir,const string &adresse){
     curl_easy_cleanup(curl);
 }
 /**
- * @brief Destructor for moveBankAuth.
+ * @brief cleaner for moveBankAuth as the destructor bring core dump error with curl cleanup
  * 
  */
-moveBankAuth::~moveBankAuth() {
+void moveBankAuth::cleanUp() {
     if (curl) {
         curl_easy_cleanup(curl);
     }
 }
+
+// moveBankAuth::~moveBankAuth() {
+//     if (curl) {
+//         curl_easy_cleanup(curl);
+//     }
+// }
 /**
  * @brief Constructor for moveBankRequests.
  * 
