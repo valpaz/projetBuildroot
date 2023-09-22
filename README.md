@@ -12,25 +12,25 @@ It aim to see the live movement of this population of crow.
 ```
 git clone https://github.com/valpaz/projetBuildroot.git
 ```
-**C++ library dependance:**
--curl (libcurl4-openssl-dev)
--cryptopp (libcrypto++-dev)
--libGD (libgd-dev)
+**C++ library dependance:**  
+-curl (libcurl4-openssl-dev)  
+-cryptopp (libcrypto++-dev)  
+-libGD (libgd-dev)  
 
 ## Utilisation
 
-**Compilation :**
+**Compilation :**  
 g++ -std=c++17 -o launcher main.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd  
 g++ -std=c++17 -o updateEvent updateEvent.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd  
 g++ -std=c++17 -o graph graph.cpp myFunctions.cpp -lgd  
 
-This program is intended to be used with cron as it can be launch every hours like this :
-*1 * * * * /your/path/updateEvent*
-*1 * * * * /your/path/graph*
-(don't forget to launch *launcher* first as it initiate the all program
+This program is intended to be used with cron as it can be launch every hours like this :  
+*1 * * * * /your/path/updateEvent*  
+*1 * * * * /your/path/graph*  
+(don't forget to launch *launcher* first as it initiate the whole program.
 
-**But you can use it without it too**, just by executing :
- -*Launcher* 
- -*updateEvent* when you want to update your data
- -*graph* when you want to retrieve new graph from your data
+**But you can use it without it too**, just by executing :  
+ -*Launcher*  
+ -*updateEvent* when you want to update your data  
+ -*graph* when you want to retrieve new graph from your data  
 
