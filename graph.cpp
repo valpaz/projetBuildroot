@@ -35,7 +35,7 @@ int main() {
 	const char* homeDir = getenv("HOME");
 
 	// Generate map of all individual together
-	FILE *map = fopen("./map.png", "rb");
+	FILE *map = fopen("./../image_repository/map.png", "rb");
 	gdImagePtr background = gdImageCreateFromPng(map);
 	int width = gdImageSX(background);
 	int height = gdImageSY(background);
@@ -78,7 +78,7 @@ int main() {
 
 			// Check if file start with a number
 			if (isdigit(fileName[0])){
-				FILE *mapBG = fopen("./map.png", "rb");
+				FILE *mapBG = fopen("./../image_repository/map.png", "rb");
 
 				// Each individual get an associated movement map
 				gdImagePtr backgroundInd = gdImageCreateFromPng(mapBG);

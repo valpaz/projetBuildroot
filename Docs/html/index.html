@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>moveBankProjet: Documentation de Mon Projet</title>
+<title>CrowMove: Welcome to CrowMove documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">moveBankProjet
+   <div id="projectname">CrowMove
    &#160;<span id="projectnumber">0.1</span>
    </div>
   </td>
@@ -63,28 +63,42 @@ $(function() {
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Documentation de Mon Projet </div>  </div>
+<div class="title">Welcome to CrowMove documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Bienvenue dans la documentation de Mon Projet.</p>
-<p>Cette documentation contient des informations sur l'architecture, les fonctionnalités et l'utilisation de Mon Projet.</p>
+<div class="textblock"><p>CrowMove is a small program which aims to observe in real life the movement of a population of crows in the Paris region</p>
+<p>In this documentation you can find information about how the program work, that is to say the classes and their method, as well as the functions. Do not hesitate to check the README.md to find out how to compile and use this simple program.</p>
+<p>This program is originaly meant to be used in an embedded machine but you can use it without it. Again, check README.md</p>
 <h1><a class="anchor" id="introduction"></a>
 Introduction</h1>
-<p>Mon Projet est un logiciel qui ...</p>
+<p>The goal is to create a program that is capable of retrieving the data from a specific study from moveBank database (movebank.org) and use a simple library as GD to plot on a map the detail of the movement of a small population of crow from Paris region. NOTE : With some modification it can be used with any study you want as it is made modular and extensible. </p>
 <h1><a class="anchor" id="architecture"></a>
 Architecture</h1>
 <p>Voici un schéma de l'architecture de Mon Projet :</p>
-<p>"Architecture de Mon Projet"</p>
-<h1><a class="anchor" id="utilisation"></a>
-Utilisation</h1>
-<p>Pour utiliser Mon Projet, suivez ces étapes :</p>
-<ul>
-<li>Étape 1 : ...</li>
-<li>Étape 2 : ...</li>
+<div class="image">
+<img src="diagram.png" alt=""/>
+<div class="caption">
+how the file are created</div></div>
+<h1><a class="anchor" id="graph"></a>
+Graph ouput exemples</h1>
+<p>On the graph :</p><ul>
+<li>The blue line mean today (day of execution) movement.</li>
+<li>The black line mean yesterday</li>
+<li>The Red line shades mean from bright red (2 day ago) to light red (7 day ago)</li>
 </ul>
+<p>The output of the graph come with two form : all population together map and individual map</p>
+<div class="image">
+<img src="allPopulation1.png" alt=""/>
+<div class="caption">
+All the individual put together on the map</div></div>
+<div class="image">
+<img src="oneIndividual1.png" alt=""/>
+<div class="caption">
+Only one individual on the map</div></div>
 <h1><a class="anchor" id="contact"></a>
 Contact</h1>
-<p>Pour toute question ou commentaire, veuillez nous contacter à <a href="#" onclick="location.href='mai'+'lto:'+'con'+'ta'+'ct@'+'mo'+'npr'+'oj'+'et.'+'co'+'m'; return false;">conta<span style="display: none;">.nosp@m.</span>ct@m<span style="display: none;">.nosp@m.</span>onpro<span style="display: none;">.nosp@m.</span>jet.<span style="display: none;">.nosp@m.</span>com</a>. </p>
+<p>For any questions, you can contact me at <a href="#" onclick="location.href='mai'+'lto:'+'agu'+'il'+'ar.'+'je'+'and'+'av'+'id@'+'ya'+'hoo'+'.c'+'om'; return false;">aguil<span style="display: none;">.nosp@m.</span>ar.j<span style="display: none;">.nosp@m.</span>eanda<span style="display: none;">.nosp@m.</span>vid@<span style="display: none;">.nosp@m.</span>yahoo<span style="display: none;">.nosp@m.</span>.com</a></p>
+<p>This program is free to use. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

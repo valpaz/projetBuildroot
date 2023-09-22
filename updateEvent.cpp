@@ -55,5 +55,7 @@ int main() {
     ofstream fileDate(string(homeDir) + "/moveBankProjet/data/lastDateUpdate.txt");
     fileDate << currentDate << endl;
     fileDate.close();
+    cout << "Movement data have been updated." << endl;
+    
 	return 0;
 }

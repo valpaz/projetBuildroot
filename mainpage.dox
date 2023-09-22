@@ -1,28 +1,41 @@
 /**
- * @mainpage Documentation de Mon Projet
+ * @mainpage Welcome to CrowMove documentation
  *
- * Bienvenue dans la documentation de Mon Projet.
+ * CrowMove is a small program which aims to observe in real life the movement of a population of crows in the Paris region
  *
- * Cette documentation contient des informations sur l'architecture, les fonctionnalités et l'utilisation de Mon Projet.
+ * In this documentation you can find information about how the program work, that is to say the classes and their method, as well as the functions.
+ * Do not hesitate to check the README.md to find out how to compile and use this simple program. 
  *
+ * This program is originaly meant to be used in an embedded machine but you can use it without it. Again, check README.md
+ * 
  * @section introduction Introduction
  *
- * Mon Projet est un logiciel qui ...
- *
+ * The goal is to create a program that is capable of retrieving the data from a specific study from moveBank database (movebank.org) and use a simple library as GD to plot on a map the detail of the
+ * movement of a small population of crow from Paris region. NOTE : With some modification it can be used with any study you want
+ * as it is made modular and extensible.
  * @section architecture Architecture
  *
  * Voici un schéma de l'architecture de Mon Projet :
  *
- * @image architecture.png "Architecture de Mon Projet"
+ * @image html ./image_repository/diagram.png "how the file are created"
  *
- * @section utilisation Utilisation
+ * @section graph Graph ouput exemples
  *
- * Pour utiliser Mon Projet, suivez ces étapes :
+ * On the graph :
+ * - The blue line mean today (day of execution) movement.
+ * - The black line mean yesterday
+ * - The Red line shades mean from bright red (2 day ago) to light red (7 day ago)
  *
- * - Étape 1 : ...
- * - Étape 2 : ...
+ * The output of the graph come with two form : all population together map and individual map 
  *
+ * @image html ./image_repository/allPopulation1.png "All the individual put together on the map"
+
+ * @image html ./image_repository/oneIndividual1.png "Only one individual on the map"
+ *
+
  * @section contact Contact
  *
- * Pour toute question ou commentaire, veuillez nous contacter à contact@monprojet.com.
+ * For any questions, you can contact me at aguilar.jeandavid@yahoo.com
+ *
+ * This program is free to use.
  */
