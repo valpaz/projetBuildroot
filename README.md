@@ -33,7 +33,7 @@ This program is intended to be used with cron as it can be launch every hours li
 (don't forget to launch *launcher* first as it initiate the whole program.
 
 **But you can use it without it too**, just by executing :  
- >./Launcher  
+ >./launcher  
  >./updateEvent 
  (when you want to update your data)  
  >./graph 
