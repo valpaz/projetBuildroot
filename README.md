@@ -22,10 +22,10 @@ git clone https://github.com/valpaz/projetBuildroot.git
 ## Utilisation
 
 **Compilation use CMakeLists.txt :**  
->mkdir build
->cd build
->cmake ..
->make
+>mkdir build  
+>cd build  
+>cmake ..  
+>make  
 
 This program is intended to be used with cron as it can be launch every hours like this :  
 *1 * * * * /your/path/updateEvent*  

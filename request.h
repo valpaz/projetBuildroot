@@ -32,7 +32,11 @@ public:
 	 * @param outputFilePath This is the path to where the data from the request are stored
 	 */
 	moveBankRequests(const string &adresse,const string &outputFilePath);
-
+	 /**
+     * @brief Destructor for moveBankRequests.
+     * 
+	 */
+	~moveBankRequests();
     /**
      * @brief Parsing for moveBank individual data.
      * 

@@ -15,8 +15,15 @@
 
 using namespace std;
 
+// ==2368367==    definitely lost: 10,832 bytes in 2 blocks
+// ==2368367==    indirectly lost: 1,426,995 bytes in 22,385 blocks
+// ==2368367==      possibly lost: 1,858 bytes in 20 blocks
+// ==2368367==    still reachable: 38 bytes in 2 blocks
+// ==2368367==         suppressed: 0 bytes in 0 blocks
+
+
 // g++ -std=c++17 -o launcher main.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
-// /home/david/formation/buildroot-2023.08/output/host/bin/aarch64-buildroot-linux-gnu-g++ -o launcherQemu newMain.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp
+// /home/david/formation/buildroot-2023.08/output/host/bin/aarch64-buildroot-linux-gnu-g++ -o launcherQemu newMain.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
 
 
 /**

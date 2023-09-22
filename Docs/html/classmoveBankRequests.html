@@ -80,6 +80,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a76db415a23f819c6a1bd15e4f171eee2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmoveBankRequests.html#a76db415a23f819c6a1bd15e4f171eee2">moveBankRequests</a> (const string &amp;adresse, const string &amp;outputFilePath)</td></tr>
 <tr class="memdesc:a76db415a23f819c6a1bd15e4f171eee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classmoveBankRequests.html" title="This class is used to make requests to moveBank database (moveBank.org)">moveBankRequests</a>.  <a href="classmoveBankRequests.html#a76db415a23f819c6a1bd15e4f171eee2">More...</a><br /></td></tr>
 <tr class="separator:a76db415a23f819c6a1bd15e4f171eee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad0970e548dbda3924785db026f200e"><td class="memItemLeft" align="right" valign="top"><a id="acad0970e548dbda3924785db026f200e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmoveBankRequests.html#acad0970e548dbda3924785db026f200e">~moveBankRequests</a> ()</td></tr>
+<tr class="memdesc:acad0970e548dbda3924785db026f200e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="classmoveBankRequests.html" title="This class is used to make requests to moveBank database (moveBank.org)">moveBankRequests</a>. <br /></td></tr>
+<tr class="separator:acad0970e548dbda3924785db026f200e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a107b8bbaf772c6220d365752a4d059af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmoveBankRequests.html#a107b8bbaf772c6220d365752a4d059af">idParsing</a> (const string &amp;homeDir, const string &amp;outputInd)</td></tr>
 <tr class="memdesc:a107b8bbaf772c6220d365752a4d059af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing for moveBank individual data.  <a href="classmoveBankRequests.html#a107b8bbaf772c6220d365752a4d059af">More...</a><br /></td></tr>
 <tr class="separator:a107b8bbaf772c6220d365752a4d059af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,40 +207,40 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8cpp_source.html#l00073">73</a> of file <a class="el" href="request_8cpp_source.html">request.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                                                         {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    ifstream fileInds(<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/data/individu.txt&quot;</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">string</span> ligne;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">string</span> ligneEvent;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">string</span> currentId;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">int</span> cptt;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">while</span> (getline(fileInds, ligne)) {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        currentId = ligne;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// Creating a file for each individual</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        ofstream fileInd((<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/indFiles/&quot;</span>+currentId + <span class="stringliteral">&quot;.csv&quot;</span>).c_str());</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        ifstream fileEvent(outputEvent.c_str());</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        getline(fileEvent, ligneEvent);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">while</span> (getline(fileEvent, ligneEvent)) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            stringstream ss(ligneEvent);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordtype">string</span> valeur;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            cptt = 0;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">while</span> (getline(ss, valeur, <span class="charliteral">&#39;,&#39;</span>)) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">if</span> (cptt==4){</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    valeur.erase(valeur.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);         </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    <span class="keywordflow">if</span> (valeur==currentId){</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        fileInd &lt;&lt; ligneEvent &lt;&lt; endl;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                cptt++;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        fileInd.close();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        fileEvent.close();</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    fileInds.close();</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="request_8cpp_source.html#l00082">82</a> of file <a class="el" href="request_8cpp_source.html">request.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                                                                         {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    ifstream fileInds(<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/data/individu.txt&quot;</span>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">string</span> ligne;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">string</span> ligneEvent;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">string</span> currentId;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">int</span> cptt;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">while</span> (getline(fileInds, ligne)) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        currentId = ligne;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">// Creating a file for each individual</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        ofstream fileInd((<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/indFiles/&quot;</span>+currentId + <span class="stringliteral">&quot;.csv&quot;</span>).c_str());</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        ifstream fileEvent(outputEvent.c_str());</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        getline(fileEvent, ligneEvent);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">while</span> (getline(fileEvent, ligneEvent)) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            stringstream ss(ligneEvent);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordtype">string</span> valeur;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            cptt = 0;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">while</span> (getline(ss, valeur, <span class="charliteral">&#39;,&#39;</span>)) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <span class="keywordflow">if</span> (cptt==4){</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                    valeur.erase(valeur.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);         </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    <span class="keywordflow">if</span> (valeur==currentId){</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        fileInd &lt;&lt; ligneEvent &lt;&lt; endl;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                cptt++;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        fileInd.close();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        fileEvent.close();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    fileInds.close();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -283,39 +287,39 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8cpp_source.html#l00116">116</a> of file <a class="el" href="request_8cpp_source.html">request.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                                                                              {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    ifstream fileIndis(<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/data/individu.txt&quot;</span>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">string</span> line;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">string</span> ligneEvent;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">string</span> currentId;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">int</span> cptt;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">while</span> (getline(fileIndis, line)) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        currentId = line;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        ofstream fileUpdateInd((<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/indFiles/&quot;</span>+currentId + <span class="stringliteral">&quot;.csv&quot;</span>).c_str(),std::ios::app);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        ifstream fileUpdateEvent(outputUpdateEvent.c_str());</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">while</span> (getline(fileUpdateEvent, ligneEvent)) {</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            stringstream ss(ligneEvent);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordtype">string</span> valeur;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            cptt = 0;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">while</span> (getline(ss, valeur, <span class="charliteral">&#39;,&#39;</span>)) {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <span class="keywordflow">if</span> (cptt==4){</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                    valeur.erase(valeur.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);   </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                    <span class="keywordflow">if</span> (valeur==currentId){</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        fileUpdateInd &lt;&lt; ligneEvent &lt;&lt; endl;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                    }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                cptt++;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            }</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        fileUpdateInd.close();</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        fileUpdateEvent.close();</div>
+<p class="definition">Definition at line <a class="el" href="request_8cpp_source.html#l00125">125</a> of file <a class="el" href="request_8cpp_source.html">request.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                                                                              {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    ifstream fileIndis(<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/data/individu.txt&quot;</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">string</span> line;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">string</span> ligneEvent;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">string</span> currentId;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">int</span> cptt;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">while</span> (getline(fileIndis, line)) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        currentId = line;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        ofstream fileUpdateInd((<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/indFiles/&quot;</span>+currentId + <span class="stringliteral">&quot;.csv&quot;</span>).c_str(),std::ios::app);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        ifstream fileUpdateEvent(outputUpdateEvent.c_str());</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">while</span> (getline(fileUpdateEvent, ligneEvent)) {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            stringstream ss(ligneEvent);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordtype">string</span> valeur;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            cptt = 0;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">while</span> (getline(ss, valeur, <span class="charliteral">&#39;,&#39;</span>)) {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="keywordflow">if</span> (cptt==4){</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                    valeur.erase(valeur.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);   </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                    <span class="keywordflow">if</span> (valeur==currentId){</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                        fileUpdateInd &lt;&lt; ligneEvent &lt;&lt; endl;</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                    }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                cptt++;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        fileUpdateInd.close();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        fileUpdateEvent.close();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -362,29 +366,29 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8cpp_source.html#l00040">40</a> of file <a class="el" href="request_8cpp_source.html">request.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                                             {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">string</span> line;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        ifstream fileOutput(outputInd.c_str());</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        ofstream fileIndiv(<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/data/individu.txt&quot;</span>, std::ios::out | std::ios::trunc);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">while</span> (getline(fileOutput, line)) {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            stringstream ss(line);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordtype">int</span> cpt = 0;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">while</span> (ss.good()) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                std::string substr;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                getline(ss, substr, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">if</span> (cpt == 2){</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    <span class="keywordflow">if</span> (isdigit(substr[0])){</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        fileIndiv &lt;&lt; substr &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                cpt++;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        fileIndiv.close();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        fileOutput.close();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="request_8cpp_source.html#l00049">49</a> of file <a class="el" href="request_8cpp_source.html">request.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                                                             {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">string</span> line;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        ifstream fileOutput(outputInd.c_str());</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        ofstream fileIndiv(<span class="keywordtype">string</span>(homeDir) + <span class="stringliteral">&quot;/moveBankProjet/data/individu.txt&quot;</span>, std::ios::out | std::ios::trunc);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">while</span> (getline(fileOutput, line)) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            stringstream ss(line);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordtype">int</span> cpt = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">while</span> (ss.good()) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                std::string substr;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                getline(ss, substr, <span class="charliteral">&#39;,&#39;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keywordflow">if</span> (cpt == 2){</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    <span class="keywordflow">if</span> (isdigit(substr[0])){</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        fileIndiv &lt;&lt; substr &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                cpt++;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        fileIndiv.close();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        fileOutput.close();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -28,6 +28,15 @@ moveBankRequests::moveBankRequests(const string &adresse, const string &outputFi
     }
     fclose(outputFile);
 }
+/**
+ * @brief Destructor for moveBankRequests.
+ * 
+ */
+moveBankRequests::~moveBankRequests() {
+    if (curl) {
+        curl_easy_cleanup(curl);
+    }
+}
 
 /**
  * @brief Parsing for moveBank individual data.

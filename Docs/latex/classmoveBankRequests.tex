@@ -14,6 +14,9 @@ This class is used to make requests to move\+Bank database (move\+Bank.\+org)
 \item 
 \mbox{\hyperlink{classmoveBankRequests_a76db415a23f819c6a1bd15e4f171eee2}{move\+Bank\+Requests}} (const string \&adresse, const string \&output\+File\+Path)
 \begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classmoveBankRequests}{move\+Bank\+Requests}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmoveBankRequests_acad0970e548dbda3924785db026f200e}\label{classmoveBankRequests_acad0970e548dbda3924785db026f200e}} 
+\mbox{\hyperlink{classmoveBankRequests_acad0970e548dbda3924785db026f200e}{$\sim$move\+Bank\+Requests}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \mbox{\hyperlink{classmoveBankRequests}{move\+Bank\+Requests}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classmoveBankRequests_a107b8bbaf772c6220d365752a4d059af}{id\+Parsing}} (const string \&home\+Dir, const string \&output\+Ind)
 \begin{DoxyCompactList}\small\item\em Parsing for move\+Bank individual data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classmoveBankRequests_a979a9f267e89db92c7084cbc4d971948}{event\+Initial\+Parsing}} (const string \&home\+Dir, const string \&output\+Event)
@@ -113,43 +116,43 @@ Parse the raw event data (containing mixed data of all individual) and create ne
 \end{DoxyParams}
 
 
-Definition at line 73 of file request.\+cpp.
+Definition at line 82 of file request.\+cpp.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{73                                                                                          \{}
-\DoxyCodeLine{74     ifstream fileInds(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/individu.txt"{}});}
-\DoxyCodeLine{75     \textcolor{keywordtype}{string} ligne;}
-\DoxyCodeLine{76     \textcolor{keywordtype}{string} ligneEvent;}
-\DoxyCodeLine{77     \textcolor{keywordtype}{string} currentId;}
-\DoxyCodeLine{78     \textcolor{keywordtype}{int} cptt;}
-\DoxyCodeLine{79     \textcolor{keywordflow}{while} (getline(fileInds, ligne)) \{}
-\DoxyCodeLine{80         currentId = ligne;}
-\DoxyCodeLine{81 }
-\DoxyCodeLine{82         \textcolor{comment}{// Creating a file for each individual}}
-\DoxyCodeLine{83         ofstream fileInd((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indFiles/"{}}+currentId + \textcolor{stringliteral}{"{}.csv"{}}).c\_str());}
-\DoxyCodeLine{84         ifstream fileEvent(outputEvent.c\_str());}
-\DoxyCodeLine{85         getline(fileEvent, ligneEvent);}
-\DoxyCodeLine{86         \textcolor{keywordflow}{while} (getline(fileEvent, ligneEvent)) \{}
-\DoxyCodeLine{87             stringstream ss(ligneEvent);}
-\DoxyCodeLine{88             \textcolor{keywordtype}{string} valeur;}
-\DoxyCodeLine{89             cptt = 0;}
-\DoxyCodeLine{90             \textcolor{keywordflow}{while} (getline(ss, valeur, \textcolor{charliteral}{','})) \{}
-\DoxyCodeLine{91                 \textcolor{keywordflow}{if} (cptt==4)\{}
-\DoxyCodeLine{92                     valeur.erase(valeur.find\_last\_not\_of(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)r"{}}) + 1);         }
-\DoxyCodeLine{93                     \textcolor{keywordflow}{if} (valeur==currentId)\{}
-\DoxyCodeLine{94                         fileInd << ligneEvent << endl;}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{96                     \}}
-\DoxyCodeLine{97                 \}}
-\DoxyCodeLine{98                 cptt++;}
-\DoxyCodeLine{99             \}}
-\DoxyCodeLine{100         \}}
-\DoxyCodeLine{101         fileInd.close();}
-\DoxyCodeLine{102         fileEvent.close();}
-\DoxyCodeLine{103     \}}
-\DoxyCodeLine{104     fileInds.close();}
-\DoxyCodeLine{105 \}}
+\DoxyCodeLine{82                                                                                          \{}
+\DoxyCodeLine{83     ifstream fileInds(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/individu.txt"{}});}
+\DoxyCodeLine{84     \textcolor{keywordtype}{string} ligne;}
+\DoxyCodeLine{85     \textcolor{keywordtype}{string} ligneEvent;}
+\DoxyCodeLine{86     \textcolor{keywordtype}{string} currentId;}
+\DoxyCodeLine{87     \textcolor{keywordtype}{int} cptt;}
+\DoxyCodeLine{88     \textcolor{keywordflow}{while} (getline(fileInds, ligne)) \{}
+\DoxyCodeLine{89         currentId = ligne;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91         \textcolor{comment}{// Creating a file for each individual}}
+\DoxyCodeLine{92         ofstream fileInd((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indFiles/"{}}+currentId + \textcolor{stringliteral}{"{}.csv"{}}).c\_str());}
+\DoxyCodeLine{93         ifstream fileEvent(outputEvent.c\_str());}
+\DoxyCodeLine{94         getline(fileEvent, ligneEvent);}
+\DoxyCodeLine{95         \textcolor{keywordflow}{while} (getline(fileEvent, ligneEvent)) \{}
+\DoxyCodeLine{96             stringstream ss(ligneEvent);}
+\DoxyCodeLine{97             \textcolor{keywordtype}{string} valeur;}
+\DoxyCodeLine{98             cptt = 0;}
+\DoxyCodeLine{99             \textcolor{keywordflow}{while} (getline(ss, valeur, \textcolor{charliteral}{','})) \{}
+\DoxyCodeLine{100                 \textcolor{keywordflow}{if} (cptt==4)\{}
+\DoxyCodeLine{101                     valeur.erase(valeur.find\_last\_not\_of(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)r"{}}) + 1);         }
+\DoxyCodeLine{102                     \textcolor{keywordflow}{if} (valeur==currentId)\{}
+\DoxyCodeLine{103                         fileInd << ligneEvent << endl;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105                     \}}
+\DoxyCodeLine{106                 \}}
+\DoxyCodeLine{107                 cptt++;}
+\DoxyCodeLine{108             \}}
+\DoxyCodeLine{109         \}}
+\DoxyCodeLine{110         fileInd.close();}
+\DoxyCodeLine{111         fileEvent.close();}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113     fileInds.close();}
+\DoxyCodeLine{114 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classmoveBankRequests_a3ac836852a4052c25d6004053dd26883}\label{classmoveBankRequests_a3ac836852a4052c25d6004053dd26883}} 
@@ -180,42 +183,42 @@ Parse the raw event data (containing mixed data of all individual) and update al
 \end{DoxyParams}
 
 
-Definition at line 116 of file request.\+cpp.
+Definition at line 125 of file request.\+cpp.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{116                                                                                               \{}
-\DoxyCodeLine{117     ifstream fileIndis(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/individu.txt"{}});}
-\DoxyCodeLine{118     \textcolor{keywordtype}{string} line;}
-\DoxyCodeLine{119     \textcolor{keywordtype}{string} ligneEvent;}
-\DoxyCodeLine{120     \textcolor{keywordtype}{string} currentId;}
-\DoxyCodeLine{121     \textcolor{keywordtype}{int} cptt;}
-\DoxyCodeLine{122     \textcolor{keywordflow}{while} (getline(fileIndis, line)) \{}
-\DoxyCodeLine{123         currentId = line;}
-\DoxyCodeLine{124 }
-\DoxyCodeLine{125         ofstream fileUpdateInd((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indFiles/"{}}+currentId + \textcolor{stringliteral}{"{}.csv"{}}).c\_str(),std::ios::app);}
-\DoxyCodeLine{126         ifstream fileUpdateEvent(outputUpdateEvent.c\_str());}
-\DoxyCodeLine{127         \textcolor{keywordflow}{while} (getline(fileUpdateEvent, ligneEvent)) \{}
-\DoxyCodeLine{128             stringstream ss(ligneEvent);}
-\DoxyCodeLine{129             \textcolor{keywordtype}{string} valeur;}
-\DoxyCodeLine{130             cptt = 0;}
-\DoxyCodeLine{131             \textcolor{keywordflow}{while} (getline(ss, valeur, \textcolor{charliteral}{','})) \{}
-\DoxyCodeLine{132                 \textcolor{keywordflow}{if} (cptt==4)\{}
-\DoxyCodeLine{133                     valeur.erase(valeur.find\_last\_not\_of(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)r"{}}) + 1);   }
-\DoxyCodeLine{134                     \textcolor{keywordflow}{if} (valeur==currentId)\{}
-\DoxyCodeLine{135                         fileUpdateInd << ligneEvent << endl;}
-\DoxyCodeLine{136 }
-\DoxyCodeLine{137 }
-\DoxyCodeLine{138                     \}}
-\DoxyCodeLine{139                 \}}
-\DoxyCodeLine{140                 cptt++;}
-\DoxyCodeLine{141             \}}
-\DoxyCodeLine{142         \}}
-\DoxyCodeLine{143         fileUpdateInd.close();}
-\DoxyCodeLine{144         fileUpdateEvent.close();}
+\DoxyCodeLine{125                                                                                               \{}
+\DoxyCodeLine{126     ifstream fileIndis(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/individu.txt"{}});}
+\DoxyCodeLine{127     \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{128     \textcolor{keywordtype}{string} ligneEvent;}
+\DoxyCodeLine{129     \textcolor{keywordtype}{string} currentId;}
+\DoxyCodeLine{130     \textcolor{keywordtype}{int} cptt;}
+\DoxyCodeLine{131     \textcolor{keywordflow}{while} (getline(fileIndis, line)) \{}
+\DoxyCodeLine{132         currentId = line;}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134         ofstream fileUpdateInd((\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/indFiles/"{}}+currentId + \textcolor{stringliteral}{"{}.csv"{}}).c\_str(),std::ios::app);}
+\DoxyCodeLine{135         ifstream fileUpdateEvent(outputUpdateEvent.c\_str());}
+\DoxyCodeLine{136         \textcolor{keywordflow}{while} (getline(fileUpdateEvent, ligneEvent)) \{}
+\DoxyCodeLine{137             stringstream ss(ligneEvent);}
+\DoxyCodeLine{138             \textcolor{keywordtype}{string} valeur;}
+\DoxyCodeLine{139             cptt = 0;}
+\DoxyCodeLine{140             \textcolor{keywordflow}{while} (getline(ss, valeur, \textcolor{charliteral}{','})) \{}
+\DoxyCodeLine{141                 \textcolor{keywordflow}{if} (cptt==4)\{}
+\DoxyCodeLine{142                     valeur.erase(valeur.find\_last\_not\_of(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)r"{}}) + 1);   }
+\DoxyCodeLine{143                     \textcolor{keywordflow}{if} (valeur==currentId)\{}
+\DoxyCodeLine{144                         fileUpdateInd << ligneEvent << endl;}
 \DoxyCodeLine{145 }
-\DoxyCodeLine{146     \}}
-\DoxyCodeLine{147 \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147                     \}}
+\DoxyCodeLine{148                 \}}
+\DoxyCodeLine{149                 cptt++;}
+\DoxyCodeLine{150             \}}
+\DoxyCodeLine{151         \}}
+\DoxyCodeLine{152         fileUpdateInd.close();}
+\DoxyCodeLine{153         fileUpdateEvent.close();}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     \}}
+\DoxyCodeLine{156 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classmoveBankRequests_a107b8bbaf772c6220d365752a4d059af}\label{classmoveBankRequests_a107b8bbaf772c6220d365752a4d059af}} 
@@ -246,32 +249,32 @@ Parse the raw data containing ids, informations, etc and create a new file conta
 \end{DoxyParams}
 
 
-Definition at line 40 of file request.\+cpp.
+Definition at line 49 of file request.\+cpp.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{40                                                                              \{}
-\DoxyCodeLine{41         \textcolor{keywordtype}{string} line;}
-\DoxyCodeLine{42         ifstream fileOutput(outputInd.c\_str());}
-\DoxyCodeLine{43         ofstream fileIndiv(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/individu.txt"{}}, std::ios::out | std::ios::trunc);}
-\DoxyCodeLine{44         \textcolor{keywordflow}{while} (getline(fileOutput, line)) \{}
-\DoxyCodeLine{45             stringstream ss(line);}
-\DoxyCodeLine{46             \textcolor{keywordtype}{int} cpt = 0;}
-\DoxyCodeLine{47             \textcolor{keywordflow}{while} (ss.good()) \{}
-\DoxyCodeLine{48                 std::string substr;}
-\DoxyCodeLine{49                 getline(ss, substr, \textcolor{charliteral}{','});}
-\DoxyCodeLine{50                 \textcolor{keywordflow}{if} (cpt == 2)\{}
-\DoxyCodeLine{51                     \textcolor{keywordflow}{if} (isdigit(substr[0]))\{}
-\DoxyCodeLine{52                         fileIndiv << substr << std::endl;}
-\DoxyCodeLine{53                     \}}
-\DoxyCodeLine{54                 \}}
-\DoxyCodeLine{55                 cpt++;}
-\DoxyCodeLine{56             \}}
-\DoxyCodeLine{57 }
-\DoxyCodeLine{58         \}}
-\DoxyCodeLine{59         fileIndiv.close();}
-\DoxyCodeLine{60         fileOutput.close();}
-\DoxyCodeLine{61 \}}
+\DoxyCodeLine{49                                                                              \{}
+\DoxyCodeLine{50         \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{51         ifstream fileOutput(outputInd.c\_str());}
+\DoxyCodeLine{52         ofstream fileIndiv(\textcolor{keywordtype}{string}(homeDir) + \textcolor{stringliteral}{"{}/moveBankProjet/data/individu.txt"{}}, std::ios::out | std::ios::trunc);}
+\DoxyCodeLine{53         \textcolor{keywordflow}{while} (getline(fileOutput, line)) \{}
+\DoxyCodeLine{54             stringstream ss(line);}
+\DoxyCodeLine{55             \textcolor{keywordtype}{int} cpt = 0;}
+\DoxyCodeLine{56             \textcolor{keywordflow}{while} (ss.good()) \{}
+\DoxyCodeLine{57                 std::string substr;}
+\DoxyCodeLine{58                 getline(ss, substr, \textcolor{charliteral}{','});}
+\DoxyCodeLine{59                 \textcolor{keywordflow}{if} (cpt == 2)\{}
+\DoxyCodeLine{60                     \textcolor{keywordflow}{if} (isdigit(substr[0]))\{}
+\DoxyCodeLine{61                         fileIndiv << substr << std::endl;}
+\DoxyCodeLine{62                     \}}
+\DoxyCodeLine{63                 \}}
+\DoxyCodeLine{64                 cpt++;}
+\DoxyCodeLine{65             \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68         fileIndiv.close();}
+\DoxyCodeLine{69         fileOutput.close();}
+\DoxyCodeLine{70 \}}
 
 \end{DoxyCode}
 

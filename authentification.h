@@ -36,6 +36,11 @@ public:
 	 * @param outputFilePath This is the path to where the data from the request are stored
 	 */
 	moveBankAuth(const string &homeDir,const string &adresse);
+	 /**
+     * @brief Destructor for moveBankAuth.
+     * 
+	 */
+	~moveBankAuth();
     /**
      * @brief Calculating the md5 using the license_terms.txt file
      * 

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['movebankauth_19',['moveBankAuth',['../classmoveBankAuth.html',1,'']]],
-  ['movebankrequests_20',['moveBankRequests',['../classmoveBankRequests.html',1,'']]]
+  ['movebankauth_21',['moveBankAuth',['../classmoveBankAuth.html',1,'']]],
+  ['movebankrequests_22',['moveBankRequests',['../classmoveBankRequests.html',1,'']]]
 ];

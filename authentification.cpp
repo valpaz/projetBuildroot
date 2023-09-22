@@ -34,7 +34,15 @@ moveBankAuth::moveBankAuth(const string &homeDir,const string &adresse){
     }
     curl_easy_cleanup(curl);
 }
-
+/**
+ * @brief Destructor for moveBankAuth.
+ * 
+ */
+moveBankAuth::~moveBankAuth() {
+    if (curl) {
+        curl_easy_cleanup(curl);
+    }
+}
 /**
  * @brief Constructor for moveBankRequests.
  * 
