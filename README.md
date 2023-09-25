@@ -41,7 +41,7 @@ Now :
 **First you need to compile :**  
 
 In the CMakeLists.txt, you need to set the path to your specific compileur. In this exemple :  
->set(CMAKE_CXX_COMPILER /path/to/buildroot-2023.08/output/host/bin/aarch64-buildroot-linux-gnu-g++)  
+*set(CMAKE_CXX_COMPILER /path/to/buildroot-2023.08/output/host/bin/aarch64-buildroot-linux-gnu-g++)*  
 >mkdir build  
 >cd build  
 >cmake ..  
@@ -65,11 +65,13 @@ with this done, do :
 
 Search BR2_ROOTFS_USERS_TABLES and add the path to users.txt.  
 Now in your overlay folder :  
-mkdir home;cd home;mkdir username  
+
+>mkdir home;cd home;mkdir username  
 
 **copying your executables to your username folder**  
-cp graph launcher updateEvent ~/your/buildroot/overlay/home/username/  
-cp map.png ~/your/buildroot/overlay/home/username/  
+
+>cp graph launcher updateEvent ~/your/buildroot/overlay/home/username/  
+>cp map.png ~/your/buildroot/overlay/home/username/  
 
 **Setting up cron**  
 Next, you need to add cron so that it can update data every hour and create new graph.  
