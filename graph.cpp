@@ -31,7 +31,7 @@ int main() {
 	const char* homeDir = getenv("HOME");
 
 	// Generate map of all individual together
-	FILE *map = fopen("./map.png", "rb");
+	FILE *map = fopen("map.png", "rb");
 	gdImagePtr background = gdImageCreateFromPng(map);
 	int width = gdImageSX(background);
 	int height = gdImageSY(background);
