@@ -17,9 +17,6 @@ using namespace std;
 
 
 
-// g++ -std=c++17 -o launcher main.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
-// /home/david/formation/buildroot-2023.08/output/host/bin/aarch64-buildroot-linux-gnu-g++ -o launcherQemu newMain.cpp authentification.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
-
 
 /**
  * @brief The main function of the lancheur part of this program (meant to be used on a embedded machine with cron).

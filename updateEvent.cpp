@@ -11,9 +11,6 @@
 #include "myFunctions.h"
 #include "request.h"
 
-// g++ -std=c++17 -o updateEvent updateEvent.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
-// /home/david/formation/buildroot-2023.08/output/host/bin/aarch64-buildroot-linux-gnu-g++ -o updateEventQemu updateEvent.cpp myFunctions.cpp request.cpp -lcurl -lcryptopp -lgd
-
 /**
  * @brief This is the main function of the update part of this program current.
  *
