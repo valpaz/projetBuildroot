@@ -74,7 +74,7 @@ int main() {
 
 			// Check if file start with a number
 			if (isdigit(fileName[0])){
-				FILE *mapBG = fopen("./image_repository/map.png", "rb");
+				FILE *mapBG = fopen("map.png", "rb");
 
 				// Each individual get an associated movement map
 				gdImagePtr backgroundInd = gdImageCreateFromPng(mapBG);
